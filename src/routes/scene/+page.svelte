@@ -1,15 +1,39 @@
+<script>
+	import { createScene } from '../../setup/scene.js';
+	import { onMount } from 'svelte';
+
+	var container;
+	onMount(() => {
+		createScene(container, { width: 400, height: 400 }).animate();
+	});
+</script>
+
+<h1>Scene</h1>
+<div class="minimal-card">
+	<div bind:this={container} />
+</div>
+
 <svelte:head>
-  <title>Home</title>
+	<title>Scene</title>
 </svelte:head>
 
-<h1>Minimals</h1>
+<style>
+	.text-center {
+		text-align: center;
+	}
 
-<p>
-  Hi, there. Welcome to this small site where I learn about threejs, instanced
-  mesh, and structural geology etc..
-</p>
+	.minimals {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
 
-<p>
-  Feel free to checkout <a href="/instancedmesh">Instanced Mesh Example</a> and
-  <a href="structural-geology">Structural Geology Example</a>.
-</p>
+	.minimal-card {
+		display: inline-block;
+		margin: 1rem 1rem;
+		width: 450px;
+	}
+	h3 {
+		margin: 0.25rem 0.25rem;
+	}
+</style>

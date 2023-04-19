@@ -21,6 +21,11 @@
 				href="/structural-geology">Structural Geology</a
 			>
 		</li>
+		<li>
+			<a aria-current={segment === 'pointcloud' ? 'page' : undefined} href="/pointcloud"
+				>PointCloud</a
+			>
+		</li>
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
