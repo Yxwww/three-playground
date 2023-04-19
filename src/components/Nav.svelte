@@ -1,9 +1,6 @@
 <script>
 	/** @type {string} */
 	export let segment;
-	$: {
-		console.log(segment);
-	}
 </script>
 
 <nav>
