@@ -28,15 +28,9 @@ mat4 rotate(vec3 axis, float angle) {
 }
 
 void main(){
-  /* vPosition = offset * max( abs( sineTime * 2.0 + 1.0 ), 0.5 ) + position; */
   mat3 rotatedMatrix = mat3(rotate(normalize(vec3( 0, 0, 1 )), -dip));
-  mat3 rotatedMatrix1 = mat3(rotate(normalize(vec3( 0, 1, 0 )), dipDirection));
+  mat3 rotatedMatrix1 = mat3(rotate(normalize(vec3( 0, 1, 0 )), -dipDirection));
   vPosition = offset + rotatedMatrix * position * rotatedMatrix1;
-  /* vec4 orientation = normalize( mix( orientationStart, orientationEnd, sineTime ) ); */
-  /* vPosition = orientation * vPosition; */
-  /* vec2 rotatedPosition = vec3( */
-  /*    vPosition.x * dip + vPosition.y * 0, */
-  /*    vPosition.y * dip - vPosition.x * 0); */
   vColor = color;
   gl_Position = projectionMatrix * modelViewMatrix * vec4( vPosition, 1.0 );
 }

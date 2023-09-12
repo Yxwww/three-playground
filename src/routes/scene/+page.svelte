@@ -8,14 +8,14 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Scene</title>
+</svelte:head>
+
 <h1>Scene</h1>
 <div class="minimal-card">
 	<div bind:this={container} />
 </div>
-
-<svelte:head>
-	<title>Scene</title>
-</svelte:head>
 
 <style>
 	.text-center {

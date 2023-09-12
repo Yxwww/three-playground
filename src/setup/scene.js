@@ -1,19 +1,30 @@
 import { Color, DirectionalLight, Scene, PerspectiveCamera, WebGLRenderer } from 'three';
 import { OrbitControls } from './orbitControl';
 import { AxesHelper } from './axesHelper';
+/**
+ * @typedef { import("./axesHelper").AxesHelper } AxesHelper
+ */
 
+const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 50, pos: [100, 100, 100] }
+/**
+	* @param {HTMLElement} container - rendering container
+	*/
 export function createScene(
 	container,
-	{ width = 400, height = 400, axesLength = 2 } = {
+	{ width = 400, height = 400, axesLength = 2, camera: cameraConfig = CAMERA_DEFAULT_CONFIG } = {
 		width: 400,
 		height: 400,
-		axesLength: 2
+		axesLength: 2,
+		camera: CAMERA_DEFAULT_CONFIG
 	}
 ) {
-	const camera = new PerspectiveCamera(45, 1, 0.1, 50);
-	camera.position.z = 2;
+	const camera = new PerspectiveCamera(45, 1, cameraConfig.near, cameraConfig.far);
+	camera.position.x = cameraConfig.pos[0]
+	camera.position.y = cameraConfig.pos[1]
+	camera.position.z = cameraConfig.pos[2];
 	const scene = new Scene();
 
+	/** @type any */
 	let axesHelper;
 	if (axesLength > 0) {
 		axesHelper = new AxesHelper(axesLength);
@@ -58,7 +69,7 @@ export function createScene(
 		render();
 	}
 
-	let onRender = () => {};
+	let onRender = () => { };
 	function render() {
 		onRender();
 		controls.update();
