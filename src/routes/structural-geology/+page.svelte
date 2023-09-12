@@ -16,8 +16,6 @@
 	import { createScene } from '../../setup/scene.js';
 	import { createText } from '../../setup/text.js';
 
-	export const prerender = false;
-
 	var container;
 	let toggleOn = true;
 	let polarity = toggleOn ? 1 : -1;

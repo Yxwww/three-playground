@@ -1,6 +1,6 @@
 import { Color, MeshBasicMaterial, Mesh } from 'three';
-import { FontLoader } from 'three/addons/loaders/FontLoader';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { noop } from 'svelte/internal';
 
 const fontLoader = new FontLoader();
