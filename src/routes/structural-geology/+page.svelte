@@ -104,6 +104,9 @@
 			<!-- <div class="ui&#45;item"> -->
 			<!--   <b>x</b><input type="range" min="&#45;1.57" max="1.57" step="0.1" bind:value={rx} />{rx}<br> -->
 			<!-- </div> -->
+			<div>
+				<a target="_blank" rel="noreferrer" href="https://github.com/Yxwww/three-playground/blob/main/src/setup/instancedMesh/cylinder.js">Github</a>
+			</div>
 			<div class="ui-item">
 				<span class="attribute">Dip Direction</span><input
 					type="range"
@@ -126,6 +129,8 @@
 				<span class="attribute" style="margin-right: 1em;">Polarity</span>
 				<Toggle bind:toggle={toggleOn} /><span style="margin-left: 1rem;">{polarity}</span>
 			</div>
+
+
 		</div>
 	</div>
 </div>
