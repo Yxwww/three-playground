@@ -5,10 +5,10 @@ import { AxesHelper } from './axesHelper';
  * @typedef { import("./axesHelper").AxesHelper } AxesHelper
  */
 
-const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 50, pos: [100, 100, 100] }
+const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 50, pos: [100, 100, 100] };
 /**
-	* @param {HTMLElement} container - rendering container
-	*/
+ * @param {HTMLElement} container - rendering container
+ */
 export function createScene(
 	container,
 	{ width = 400, height = 400, axesLength = 2, camera: cameraConfig = CAMERA_DEFAULT_CONFIG } = {
@@ -19,8 +19,8 @@ export function createScene(
 	}
 ) {
 	const camera = new PerspectiveCamera(45, 1, cameraConfig.near, cameraConfig.far);
-	camera.position.x = cameraConfig.pos[0]
-	camera.position.y = cameraConfig.pos[1]
+	camera.position.x = cameraConfig.pos[0];
+	camera.position.y = cameraConfig.pos[1];
 	camera.position.z = cameraConfig.pos[2];
 	const scene = new Scene();
 
@@ -69,7 +69,7 @@ export function createScene(
 		render();
 	}
 
-	let onRender = () => { };
+	let onRender = () => {};
 	function render() {
 		onRender();
 		controls.update();
@@ -87,12 +87,24 @@ export function createScene(
 			return axesHelper;
 		},
 		render,
+		/**
+		 * @param {THREE.Object3D} object
+		 * @returns {void}
+		 **/
+		remove(object) {
+			object.geometry?.dispose();
+			object.material?.dispose();
+			scene.remove(object);
+		},
 		onRender(cb) {
 			onRender = cb;
 		},
 		animate,
 		onDestroy() {
 			// window.removeEventListener('resize', onWindowResize)
+		},
+		dispose() {
+			scene.remove();
 		},
 		add(threeObject) {
 			scene.add(threeObject);
