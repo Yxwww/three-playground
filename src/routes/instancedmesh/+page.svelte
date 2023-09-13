@@ -11,9 +11,9 @@
 	var container, cylinderContainer, instancedCylinderContainer, instancedCylinderScene;
 	let instancedCylinderMesh;
 
-	let instances = writable(1000);
+	let instances = writable(100000);
 
-	let size = 0.3
+	let size = 0.01
 
 	onMount(() => {
 		// three instanced mesh scene
