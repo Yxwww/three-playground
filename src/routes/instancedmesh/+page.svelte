@@ -9,6 +9,7 @@
 	import { createScene } from '../../setup/scene.js';
 	import { getStores } from '$app/stores';
 	var container, cylinderContainer, instancedCylinderContainer, instancedCylinderScene;
+	let instancedCylinderMesh;
 
 	let instances = writable(10);
 
@@ -37,7 +38,7 @@
 		// instanced cylinder
 		instancedCylinderScene = createScene(instancedCylinderContainer);
 		instancedCylinderScene.getCamera().position.fromArray([2, 2, 2]);
-		let instancedCylinderMesh = createInstancedCylinder(10, 0.25, 0.1);
+		instancedCylinderMesh = createInstancedCylinder(10, 0.25, 0.1);
 		instancedCylinderScene.add(instancedCylinderMesh);
 		instancedCylinderScene.onRender(() => {
 			var time = performance.now();
@@ -52,6 +53,13 @@
 			instancedCylinderScene.add(instancedCylinderMesh);
 		});
 		instancedCylinderScene.animate();
+	});
+
+	onMount(() => {
+		return () => {
+			instancedCylinderScene.remove(instancedCylinderMesh);
+			instancedCylinderScene.dispose();
+		};
 	});
 </script>
 
