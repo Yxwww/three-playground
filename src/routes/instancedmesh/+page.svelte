@@ -1,6 +1,6 @@
 <script charset="utf-8">
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
+	import { get, writable } from 'svelte/store';
 	import {
 		createThreeInstancedMeshRenderingInstances,
 		createInstancedCylinder,
@@ -11,7 +11,9 @@
 	var container, cylinderContainer, instancedCylinderContainer, instancedCylinderScene;
 	let instancedCylinderMesh;
 
-	let instances = writable(10);
+	let instances = writable(1000);
+
+	let size = 0.3
 
 	onMount(() => {
 		// three instanced mesh scene
@@ -38,7 +40,7 @@
 		// instanced cylinder
 		instancedCylinderScene = createScene(instancedCylinderContainer);
 		instancedCylinderScene.getCamera().position.fromArray([2, 2, 2]);
-		instancedCylinderMesh = createInstancedCylinder(10, 0.25, 0.1);
+		instancedCylinderMesh = createInstancedCylinder(get(instances), 1, 0.5);
 		instancedCylinderScene.add(instancedCylinderMesh);
 		instancedCylinderScene.onRender(() => {
 			var time = performance.now();
@@ -49,12 +51,18 @@
 		});
 		instances.subscribe((v) => {
 			instancedCylinderScene.remove(instancedCylinderMesh);
-			instancedCylinderMesh = createInstancedCylinder(v, 0.15, 0.05);
+			instancedCylinderMesh = createInstancedCylinder(v, 0.1, 0.04);
 			instancedCylinderScene.add(instancedCylinderMesh);
 		});
 		instancedCylinderScene.animate();
 	});
 
+	$: {
+		console.log('instancedCylinderMesh', instancedCylinderMesh);
+		if(instancedCylinderMesh) {
+			instancedCylinderMesh.material.uniforms.size.value = size;
+		}
+	}
 	onMount(() => {
 		return () => {
 			instancedCylinderScene.remove(instancedCylinderMesh);
@@ -91,6 +99,15 @@
 				value={$instances}
 				type="number"
 			/>
+		</div>
+		<div>
+				<h2 class="attribute">size</h2><input
+					type="range"
+					min="0"
+					max="1"
+					step="0.001"
+					bind:value={size}
+				/>{size}<br />
 		</div>
 	</div>
 </div>

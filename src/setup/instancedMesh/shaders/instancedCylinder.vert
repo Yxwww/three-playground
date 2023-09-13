@@ -1,6 +1,7 @@
 precision highp float;
 
 uniform float sineTime;
+uniform float size;
 
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
@@ -30,7 +31,7 @@ mat4 rotate(vec3 axis, float angle) {
 void main(){
   mat3 rotatedMatrix = mat3(rotate(normalize(vec3( 0, 0, 1 )), -dip));
   mat3 rotatedMatrix1 = mat3(rotate(normalize(vec3( 0, 1, 0 )), -dipDirection));
-  vPosition = offset + rotatedMatrix * position * rotatedMatrix1;
+  vPosition = offset + rotatedMatrix * position * rotatedMatrix1 * size;
   vColor = color;
   gl_Position = projectionMatrix * modelViewMatrix * vec4( vPosition, 1.0 );
 }

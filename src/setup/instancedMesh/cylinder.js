@@ -50,7 +50,8 @@ export function createInstancedCylinder(instances = 1, radius = 1, height = 0.5)
 	const material = new RawShaderMaterial({
 		uniforms: {
 			time: { value: 1.0 },
-			sineTime: { value: 1.0 }
+			sineTime: { value: 1.0 },
+			size: {value: 1.0}
 		},
 		vertexShader: vertexShader,
 		fragmentShader: fragmentShader,
