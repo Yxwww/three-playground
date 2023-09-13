@@ -29,11 +29,11 @@
 		// scene.animate();
 
 		// cylinder minimal
-		const cylinderScene = createScene(cylinderContainer);
-		cylinderScene.getCamera().position.fromArray([3, 4, 6]);
-		const cylinder = createThreeCylinder();
-		cylinderScene.add(cylinder);
-		cylinderScene.animate();
+		// const cylinderScene = createScene(cylinderContainer);
+		// cylinderScene.getCamera().position.fromArray([3, 4, 6]);
+		// const cylinder = createThreeCylinder();
+		// cylinderScene.add(cylinder);
+		// cylinderScene.animate();
 
 		// instanced cylinder
 		instancedCylinderScene = createScene(instancedCylinderContainer);
@@ -73,10 +73,10 @@
 		<h3 class="text-center">Three InstancedMesh</h3>
 	</div> -->
 
-	<div class="minimal-card">
+	<!-- <div class="minimal-card">
 		<div bind:this={cylinderContainer} />
 		<h3 class="text-center">Three CylinderGeometry</h3>
-	</div>
+	</div> -->
 
 	<div class="minimal-card">
 		<div bind:this={instancedCylinderContainer} />
