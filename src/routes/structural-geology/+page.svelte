@@ -44,9 +44,7 @@
 		const axesLength = 2;
 		const scene = createScene(container, { width: 800, height: 800, axesLength: 0 });
 		mesh = createInstancedCylinder();
-		const camera = scene.getCamera();
-		window.camera = camera;
-		camera.position.set(-6, 4, -3);
+		scene.camera.setPos(-6, 4, -3);
 
 		meshContainer = new Object3D();
 
@@ -69,6 +67,7 @@
 		scene.add(S);
 		scene.add(E);
 		scene.add(W);
+		const camera = scene.camera.threeCamera;
 		scene.onRender(() => {
 			N.rotation.copy(camera.rotation);
 			S.rotation.copy(camera.rotation);
@@ -105,7 +104,12 @@
 			<!--   <b>x</b><input type="range" min="&#45;1.57" max="1.57" step="0.1" bind:value={rx} />{rx}<br> -->
 			<!-- </div> -->
 			<div>
-				<a target="_blank" rel="noreferrer" href="https://github.com/Yxwww/three-playground/blob/main/src/setup/instancedMesh/cylinder.js">Github</a>
+				<a
+					target="_blank"
+					rel="noreferrer"
+					href="https://github.com/Yxwww/three-playground/blob/main/src/setup/instancedMesh/cylinder.js"
+					>Github</a
+				>
 			</div>
 			<div class="ui-item">
 				<span class="attribute">Dip Direction</span><input
@@ -129,8 +133,6 @@
 				<span class="attribute" style="margin-right: 1em;">Polarity</span>
 				<Toggle bind:toggle={toggleOn} /><span style="margin-left: 1rem;">{polarity}</span>
 			</div>
-
-
 		</div>
 	</div>
 </div>

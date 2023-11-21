@@ -13,7 +13,7 @@
 
 	let instances = writable(100000);
 
-	let size = 0.01
+	let size = 0.01;
 
 	onMount(() => {
 		// three instanced mesh scene
@@ -39,7 +39,7 @@
 
 		// instanced cylinder
 		instancedCylinderScene = createScene(instancedCylinderContainer);
-		instancedCylinderScene.getCamera().position.fromArray([2, 2, 2]);
+		instancedCylinderScene.camera.setPos(2, 2, 2);
 		instancedCylinderMesh = createInstancedCylinder(get(instances), 1, 0.5);
 		instancedCylinderScene.add(instancedCylinderMesh);
 		instancedCylinderScene.onRender(() => {
@@ -58,8 +58,7 @@
 	});
 
 	$: {
-		console.log('instancedCylinderMesh', instancedCylinderMesh);
-		if(instancedCylinderMesh) {
+		if (instancedCylinderMesh) {
 			instancedCylinderMesh.material.uniforms.size.value = size;
 		}
 	}
@@ -101,13 +100,8 @@
 			/>
 		</div>
 		<div>
-				<h2 class="attribute">size</h2><input
-					type="range"
-					min="0"
-					max="1"
-					step="0.001"
-					bind:value={size}
-				/>{size}<br />
+			<h2 class="attribute">size</h2>
+			<input type="range" min="0" max="1" step="0.001" bind:value={size} />{size}<br />
 		</div>
 	</div>
 </div>

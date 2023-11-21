@@ -1,4 +1,4 @@
-import { Color, DirectionalLight, Scene, PerspectiveCamera, WebGLRenderer } from 'three';
+import { Color, DirectionalLight, Scene, PerspectiveCamera, WebGLRenderer, Vector3 } from 'three';
 import { OrbitControls } from './orbitControl';
 import { AxesHelper } from './axesHelper';
 /**
@@ -11,10 +11,20 @@ const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 50, pos: [100, 100, 100] };
  */
 export function createScene(
 	container,
-	{ width = 400, height = 400, axesLength = 2, camera: cameraConfig = CAMERA_DEFAULT_CONFIG } = {
+	{
+		width = 400,
+		height = 400,
+		axesLength = 2,
+		/**
+		 * @type {boolean}
+		 */
+		enableAxesHelper = true,
+		camera: cameraConfig = CAMERA_DEFAULT_CONFIG
+	} = {
 		width: 400,
 		height: 400,
 		axesLength: 2,
+		enableAxesHelper: true,
 		camera: CAMERA_DEFAULT_CONFIG
 	}
 ) {
@@ -26,7 +36,7 @@ export function createScene(
 
 	/** @type any */
 	let axesHelper;
-	if (axesLength > 0) {
+	if (enableAxesHelper && axesLength > 0) {
 		axesHelper = new AxesHelper(axesLength);
 		scene.add(axesHelper);
 	}
@@ -40,9 +50,9 @@ export function createScene(
 	const top = new DirectionalLight(0xffffff, 0.5);
 	top.position.set(0, -1, 0);
 	scene.add(top);
-	const bottom = new DirectionalLight(0xffffff, 0.5);
-	bottom.position.set(0, 1, 0);
-	scene.add(bottom);
+	// const bottom = new DirectionalLight(0xffffff, 0.5);
+	// bottom.position.set(0, 1, 0);
+	// scene.add(bottom);
 	const cameraLight = new DirectionalLight(0xffffff, 0.7);
 	scene.add(cameraLight);
 
@@ -66,19 +76,50 @@ export function createScene(
 
 	function animate() {
 		requestAnimationFrame(animate);
+		controls.update();
 		render();
 	}
 
 	let onRender = () => {};
 	function render() {
 		onRender();
-		controls.update();
 		cameraLight.position.copy(camera.position);
 		renderer.render(scene, camera);
 	}
 	return {
-		getCamera() {
-			return camera;
+		get camera() {
+			return {
+				/**
+				 * @param {number} x
+				 * @param {number} y
+				 * @param {number} z
+				 */
+				target(x, y, z) {
+					controls.target.set(x, y, z);
+					controls.update();
+				},
+				/**
+				 * @param {number} x
+				 * @param {number} y
+				 * @param {number} z
+				 */
+				lookAt(x, y, z) {
+					// camera.lookAt(x, y, z);
+					controls.target.set(x, y, z);
+					controls.update();
+				},
+				/**
+				 * @param {number} x
+				 * @param {number} y
+				 * @param {number} z
+				 */
+				setPos(x, y, z) {
+					camera.position.set(x, y, z);
+					controls.update();
+				},
+				threeCamera: camera,
+				controls
+			};
 		},
 		getLight() {
 			return top;
@@ -96,6 +137,9 @@ export function createScene(
 			object.material?.dispose();
 			scene.remove(object);
 		},
+		/**
+		 *@param {() => void} cb
+		 */
 		onRender(cb) {
 			onRender = cb;
 		},
