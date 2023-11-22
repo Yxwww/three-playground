@@ -2,6 +2,9 @@
 	import { createScene } from '../../setup/scene.js';
 	import { onMount } from 'svelte';
 
+  /**
+   * @type {HTMLDivElement}
+  */
 	var container;
 	onMount(() => {
 		createScene(container, { width: 400, height: 400 }).animate();
