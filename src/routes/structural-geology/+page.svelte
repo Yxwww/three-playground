@@ -12,9 +12,9 @@
 		LineBasicMaterial,
 		BufferAttribute
 	} from 'three';
-	import { createInstancedCylinder } from '../../setup/instancedMesh';
-	import { createScene } from '../../setup/scene.js';
-	import { createText } from '../../setup/text.js';
+	import { createInstancedCylinder } from '$lib/setup/instancedMesh';
+	import { createScene } from '$lib/setup/scene.js';
+	import { createText } from '$lib/setup/text.js';
 
 	var container;
 	let toggleOn = true;

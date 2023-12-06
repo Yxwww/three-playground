@@ -1,5 +1,14 @@
 <script>
-	import { AdditiveBlending, BoxGeometry, CustomBlending, DoubleSide, Mesh, MeshLambertMaterial, NoBlending, PlaneGeometry } from 'three';
+	import {
+		AdditiveBlending,
+		BoxGeometry,
+		CustomBlending,
+		DoubleSide,
+		Mesh,
+		MeshLambertMaterial,
+		NoBlending,
+		PlaneGeometry
+	} from 'three';
 	import { createScene } from '../../setup/scene.js';
 	import { onMount } from 'svelte';
 
@@ -17,17 +26,18 @@
 					map: texture,
 					transparent: true,
 					opacity: 1,
-          // blending: NoBlending,
-					side: DoubleSide,
+					depthTest: true,
+					// blending: NoBlending,
+					side: DoubleSide
 				});
 				const geometry = new PlaneGeometry(1.5, 1.5);
 				const mesh = new Mesh(geometry, material);
-				mesh.position.setZ(1);
-				    mesh.rotateX(-Math.PI/4)
+				mesh.position.setZ(0);
+				// mesh.rotateX(-Math.PI/4)
 
 				scene.add(mesh);
 				console.log('second');
-        scene.render()
+				scene.render();
 			});
 
 			await scene.loadTexture('tinyrick.png').then((texture) => {
@@ -35,12 +45,13 @@
 					map: texture,
 					transparent: true,
 					opacity: 1,
+					depthTest: false,
 					side: DoubleSide
 				});
 				const geometry = new PlaneGeometry(1.5, 1.5);
 				const mesh = new Mesh(geometry, material);
 				mesh.position.setZ(1);
-        mesh.rotateX(Math.PI/4)
+				// mesh.rotateX(Math.PI/4)
 
 				scene.add(mesh);
 				console.log('first');

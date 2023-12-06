@@ -6,8 +6,8 @@
 import { LineSegments, LineBasicMaterial, Float32BufferAttribute, BufferGeometry } from 'three';
 
 /**
-	* @param {number} size - size of the axes
-	*/
+ * @param {number} size - size of the axes
+ */
 function AxesHelper(size) {
 	size = size || 1;
 
