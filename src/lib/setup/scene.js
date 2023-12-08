@@ -16,7 +16,7 @@ import { OrbitControls } from './orbitControl';
 
 const loader = new TextureLoader();
 
-const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 50, pos: [5, 5, 5] };
+const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 1000, pos: [5, 5, 5] };
 /**
  * @param {HTMLElement} container - rendering container
  */
@@ -62,13 +62,13 @@ export function createScene(
 	// const light = new DirectionalLight(0xffffff, 0.5)
 	// light.position.set(0, 0, 2)
 	// scene.add(light)
-	const top = new DirectionalLight(0xffffff, 0.7);
-	top.position.set(0, -1, 0);
-	scene.add(top);
+	// const top = new DirectionalLight(0xffffff, 0.7);
+	// top.position.set(0, -1, 0);
+	// scene.add(top);
 	// const bottom = new DirectionalLight(0xffffff, 0.5);
 	// bottom.position.set(0, 1, 0);
 	// scene.add(bottom);
-	const cameraLight = new DirectionalLight(0xffffff, 1.5);
+	const cameraLight = new DirectionalLight(0xffffff, 0.9);
 	scene.add(cameraLight);
 
 	renderer.setPixelRatio(window.devicePixelRatio);
