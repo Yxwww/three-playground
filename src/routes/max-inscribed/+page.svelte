@@ -124,21 +124,22 @@
 		scene.add(rotatedPoint);
 		scene.add(toCamPoint);
 
-		const plane = new Plane(new Vector3(0, 0, 1), inscribedMesh.position.length());
-		const helper = new PlaneHelper(plane, 5, 0xff00ff);
-		scene.add(helper);
+		// const plane = new Plane(new Vector3(0, 0, 1), inscribedMesh.position.length());
+		// const helper = new PlaneHelper(plane, 5, 0xff00ff);
+		// scene.add(helper);
 
 		const { x, y, z } = inscribedMesh.position;
 		console.log('positions', x, y, z);
 		// helper.position.set(x, y, z);
 
 		const interval = setInterval(() => {
-			const pos = inscribedMesh.localToWorld(toRotate.clone());
-			const vec = new Vector3().copy(pos).sub(inscribedMesh.position);
+			// const pos = inscribedMesh.localToWorld(toRotate.clone());
+			// const vec = new Vector3().copy(pos).sub(inscribedMesh.position);
 
 			const toCam = scene.camera.threeCamera.position.clone().sub(inscribedMesh.position);
 			const projected = toCam.clone();
 			new Plane(new Vector3(0, 0, 1), 0).projectPoint(toCam, projected);
+			console.log('up', inscribedMesh.up)
 			// vec.setZ(0)
 			// toCam.clampLength(2, 2);
 			// toCam.setZ(0)

@@ -1,3 +1,6 @@
+/// <reference path="./types.d.ts" />
+	import Stats from 'three/examples/jsm/libs/stats.module.js';
+
 import {
 	Color,
 	DirectionalLight,
@@ -73,7 +76,6 @@ export function createScene(
 
 	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(width, height);
-	console.log('createScene', width, height);
 	renderer.setClearColor(new Color(255, 255, 255), 1);
 	renderer.domElement.style.display = 'block';
 	renderer.domElement.style.outline = 'none';
@@ -90,9 +92,34 @@ export function createScene(
 	//   renderer.setSize(window.innerWidth, window.innerHeight)
 	// }
 
+	/**
+	 * @type {any}
+	 */
+	let xPanel;
+	var stats = new Stats();
+	xPanel = stats.addPanel( new Stats.Panel( 'fps', '#ff8', '#221' ) );
+	stats.showPanel( 3 );
+	container.appendChild( stats.dom );
+
+	let fps = 0, fCount = 0, felapse = 0, average = 0;
+	let start = performance.now();
 	function animate() {
-		requestAnimationFrame(animate);
-		// controls.update();
+		requestAnimationFrame(() => {
+			const now = performance.now();
+			fps = 1000/(now - start);
+			fCount++;
+			felapse += fps;
+			if (fCount === 60) {
+				average = felapse / fCount;
+				fCount = 0;
+				felapse = 0;
+				xPanel?.update( average, 120 );
+			}
+
+			start = now;
+			animate()
+		});
+		controls.update();
 		render();
 	}
 
@@ -101,6 +128,9 @@ export function createScene(
 		onRender();
 		cameraLight.position.copy(camera.position);
 		renderer.render(scene, camera);
+		// for (let i = 0; i < 20000000; i++) {
+		// 	Math.pow(Math.random(), 2);
+		// }
 	}
 	return {
 		get camera() {

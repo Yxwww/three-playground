@@ -17,7 +17,8 @@
 		"max-inscribed-circle": "^2.0.1",
 		"polylabel": "^1.1.0",
 		"three": "^0.156.1",
-		"troika-three-text": "^0.49.0"
+		"troika-three-text": "^0.49.0",
+		"yuxi-scripts": "^0.0.6"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",

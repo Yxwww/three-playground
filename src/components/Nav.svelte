@@ -35,6 +35,11 @@
 				>Max Inscribed</a
 			>
 		</li>
+		<li>
+			<a aria-current={segment === 'fps' ? 'page' : undefined} href="/fps"
+				>FPS</a>
+		</li>
+
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
