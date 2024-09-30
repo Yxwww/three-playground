@@ -26,14 +26,16 @@
 					map: texture,
 					transparent: true,
 					opacity: 1,
-					depthTest: true,
+					// depthTest: true,
+					depthWrite: false,
 					// blending: NoBlending,
 					side: DoubleSide
 				});
 				const geometry = new PlaneGeometry(1.5, 1.5);
 				const mesh = new Mesh(geometry, material);
-				mesh.position.setZ(0);
-				// mesh.rotateX(-Math.PI/4)
+				mesh.renderOrder = 1
+				mesh.position.setZ(0.6);
+				mesh.rotateX(-Math.PI/4)
 
 				scene.add(mesh);
 				console.log('second');
@@ -45,12 +47,13 @@
 					map: texture,
 					transparent: true,
 					opacity: 1,
-					depthTest: false,
+					// depthTest: true,
 					side: DoubleSide
 				});
 				const geometry = new PlaneGeometry(1.5, 1.5);
 				const mesh = new Mesh(geometry, material);
-				mesh.position.setZ(1);
+				mesh.renderOrder  = 2
+				mesh.position.setZ(0.5);
 				// mesh.rotateX(Math.PI/4)
 
 				scene.add(mesh);

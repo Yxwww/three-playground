@@ -20,14 +20,11 @@
 	var container;
 	onMount(() => {
 		const scene = createScene(container, { width: 900, height: 700 });
-		// scene.camera.setPos(0, 0, 5);
 
-		scene.camera.controls.pivot.setZ(2);
-		// scene.camera.controls.update();
-		console.log('pivot', scene.camera.controls.pivot);
-		// scene.camera.target(0, 2, 0)
+		scene.camera.controls.position0.setZ(2);
 
 		function createMesh(color, offset, opacity, renderOrder) {
+			console.log('createmesh')
 			const material1 = new MeshLambertMaterial({
 				transparent: true,
 				opacity: opacity,

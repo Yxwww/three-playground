@@ -1,5 +1,6 @@
 /// <reference path="./types.d.ts" />
-	import Stats from 'three/examples/jsm/libs/stats.module.js';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
+import GUI from 'three/examples/jsm/libs/lil-gui.module.min';
 
 import {
 	Color,
@@ -16,6 +17,7 @@ import {
 	MeshLambertMaterial
 } from 'three';
 import { OrbitControls } from './orbitControl';
+import { printVector3 } from './utils';
 
 const loader = new TextureLoader();
 
@@ -97,29 +99,33 @@ export function createScene(
 	 */
 	let xPanel;
 	var stats = new Stats();
-	xPanel = stats.addPanel( new Stats.Panel( 'fps', '#ff8', '#221' ) );
-	stats.showPanel( 3 );
-	container.appendChild( stats.dom );
+	xPanel = stats.addPanel(new Stats.Panel('fps', '#ff8', '#221'));
+	stats.showPanel(3);
+	container.appendChild(stats.dom);
 
-	let fps = 0, fCount = 0, felapse = 0, average = 0;
+	let fps = 0,
+		fCount = 0,
+		felapse = 0,
+		average = 0;
 	let start = performance.now();
 	function animate() {
 		requestAnimationFrame(() => {
 			const now = performance.now();
-			fps = 1000/(now - start);
+			fps = 1000 / (now - start);
 			fCount++;
 			felapse += fps;
 			if (fCount === 60) {
 				average = felapse / fCount;
 				fCount = 0;
 				felapse = 0;
-				xPanel?.update( average, 120 );
+				xPanel?.update(average, 120);
 			}
 
 			start = now;
-			animate()
+			animate();
 		});
 		controls.update();
+		cameraState.position = printVector3(controls.position0);
 		render();
 	}
 
@@ -128,11 +134,17 @@ export function createScene(
 		onRender();
 		cameraLight.position.copy(camera.position);
 		renderer.render(scene, camera);
-		// for (let i = 0; i < 20000000; i++) {
-		// 	Math.pow(Math.random(), 2);
-		// }
 	}
-	return {
+
+	const gui = new GUI({ title: 'State' });
+	const cameraFolder = gui.addFolder('camera');
+	console.log('position', controls.position0);
+	const cameraState = {
+		position: printVector3(controls.position0)
+	};
+	cameraFolder.add(cameraState, 'position').disable().listen();
+
+	const scene = {
 		get camera() {
 			return {
 				/**
@@ -230,4 +242,6 @@ export function createScene(
 			});
 		}
 	};
+
+	return scene;
 }
