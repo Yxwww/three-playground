@@ -1,7 +1,6 @@
 <script>
-	import { MeshLambertMaterial, PlaneGeometry } from 'three';
-	// import { createScene } from '../../setup/scene.js';
 	import { createScene } from '$lib/setup/scene.js';
+	import { Text } from 'troika-three-text';
 	import { onMount } from 'svelte';
 
 	/**
@@ -9,7 +8,17 @@
 	 */
 	var container;
 	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 }).animate();
+		const scene = createScene(container, { width: 400, height: 400 });
+		const myText = new Text();
+		scene.add(myText);
+
+		myText.text = 'HELLO WORLD!';
+		myText.fontSize = 4;
+		myText.position.z = -2;
+		myText.color = 0x000000;
+
+		myText.sync();
+		scene.animate();
 	});
 </script>
 

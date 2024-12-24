@@ -1,23 +1,34 @@
 <script>
-	import { MeshLambertMaterial, PlaneGeometry } from 'three';
-	// import { createScene } from '../../setup/scene.js';
 	import { createScene } from '$lib/setup/scene.js';
 	import { onMount } from 'svelte';
+
+	let min = Infinity, max = 0, fps = 0, fCount = 0, felapse = 0, average = 0;
 
 	/**
 	 * @type {HTMLDivElement}
 	 */
 	var container;
 	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 }).animate();
+		const {animate, onRender} = createScene(container, { width: 400, height: 400 });
+		animate();
 	});
 </script>
 
 <svelte:head>
-	<title>Scene</title>
+	<title>FPS</title>
 </svelte:head>
 
-<h1>Scene</h1>
+<h1>FPS</h1>
+<p>Min: {min} , average: {average}</p>
+<ul>
+	<li>handles losing focus well</li>
+	<li>
+		relies on RAF
+		<ul>
+			<li>Will be faster than actualy framerate since RAF happens before frame is ready to paint/render</li>
+		</ul>
+	</li>
+</ul>
 <div class="minimal-card">
 	<div bind:this={container} />
 </div>

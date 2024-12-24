@@ -1,5 +1,5 @@
 <script>
-	import { createScene } from '../../setup/scene.js';
+	import { createScene } from '$lib/setup/scene.js';
 	import {
 		Points,
 		BufferGeometry,
@@ -12,7 +12,12 @@
 	/** @type {HTMLDivElement} */
 	var container;
 	onMount(() => {
-		const scene = createScene(container, { axesLength: 100, width: 400, height: 400, camera: {near: 0.1, far: 500, pos: [100, 100, 100]} });
+		const scene = createScene(container, {
+			axesLength: 100,
+			width: 400,
+			height: 400,
+			camera: { near: 0.1, far: 500, pos: [100, 100, 100] }
+		});
 		const geometry = new BufferGeometry();
 		const vertices = [];
 
@@ -42,7 +47,6 @@
 		scene.animate();
 	});
 </script>
-
 
 <div class="minimal-card">
 	<div bind:this={container} />

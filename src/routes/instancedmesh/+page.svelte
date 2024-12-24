@@ -5,10 +5,10 @@
 		createThreeInstancedMeshRenderingInstances,
 		createInstancedCylinder,
 		createThreeCylinder
-	} from '../../setup/instancedMesh';
-	import { createScene } from '../../setup/scene.js';
+	} from '$lib/setup/instancedMesh';
+	import { createScene } from '$lib/setup/scene';
 	import { getStores } from '$app/stores';
-	var container, cylinderContainer, instancedCylinderContainer, instancedCylinderScene;
+	var container, cylinderContainer, instancedCylinderContainer, scene;
 	let instancedCylinderMesh;
 
 	let instances = writable(100000);
@@ -38,11 +38,11 @@
 		// cylinderScene.animate();
 
 		// instanced cylinder
-		instancedCylinderScene = createScene(instancedCylinderContainer);
-		instancedCylinderScene.camera.setPos(2, 2, 2);
+		scene = createScene(instancedCylinderContainer);
+		scene.camera.setPos(2, 2, 2);
 		instancedCylinderMesh = createInstancedCylinder(get(instances), 1, 0.5);
-		instancedCylinderScene.add(instancedCylinderMesh);
-		instancedCylinderScene.onRender(() => {
+		scene.add(instancedCylinderMesh);
+		scene.onRender(() => {
 			var time = performance.now();
 			// instancedCylinderMesh.rotation.y = time * 0.0005
 			// instancedCylinderMesh.material.uniforms['sineTime'].value = Math.sin(
@@ -50,11 +50,11 @@
 			// )
 		});
 		instances.subscribe((v) => {
-			instancedCylinderScene.remove(instancedCylinderMesh);
+			scene.remove(instancedCylinderMesh);
 			instancedCylinderMesh = createInstancedCylinder(v, 0.1, 0.04);
-			instancedCylinderScene.add(instancedCylinderMesh);
+			scene.add(instancedCylinderMesh);
 		});
-		instancedCylinderScene.animate();
+		scene.animate();
 	});
 
 	$: {
@@ -64,8 +64,8 @@
 	}
 	onMount(() => {
 		return () => {
-			instancedCylinderScene.remove(instancedCylinderMesh);
-			instancedCylinderScene.dispose();
+			scene.remove(instancedCylinderMesh);
+			scene.dispose();
 		};
 	});
 </script>

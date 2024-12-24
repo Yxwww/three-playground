@@ -1,6 +1,6 @@
 <script>
 	import { BoxGeometry, DoubleSide, Mesh, MeshBasicMaterial, PlaneGeometry, Vector3 } from 'three';
-	import { createScene } from '../../setup/scene.js';
+	import { createScene } from '$lib/setup/scene.js';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 

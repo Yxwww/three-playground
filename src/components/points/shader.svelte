@@ -1,5 +1,5 @@
 <script>
-	import { createScene } from '../../setup/scene.js';
+	import { createScene } from '$lib/setup/scene.js';
 	import {
 		Points,
 		BufferGeometry,

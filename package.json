@@ -14,13 +14,19 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
-		"three": "^0.156.1"
+		"max-inscribed-circle": "^2.0.1",
+		"polylabel": "^1.1.0",
+		"three": "^0.156.1",
+		"troika-three-text": "^0.49.0",
+		"yuxi-scripts": "^0.0.6"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-vercel": "^2.4.2",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/polylabel": "^1.1.3",
+		"@types/three": "^0.158.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",

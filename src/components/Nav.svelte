@@ -19,9 +19,7 @@
 			>
 		</li>
 		<li>
-			<a aria-current={segment === 'pointcloud' ? 'page' : undefined} href="/pointcloud"
-				>PointCloud</a
-			>
+			<a aria-current={segment === 'pointcloud' ? 'page' : undefined} href="/pointcloud">PointCloud</a>
 		</li>
 		<li>
 			<a aria-current={segment === 'coord' ? 'page' : undefined} href="/coord">Coordindate</a>
@@ -29,6 +27,19 @@
 		<li>
 			<a aria-current={segment === 'blending' ? 'page' : undefined} href="/blending">Blending</a>
 		</li>
+		<li>
+			<a aria-current={segment === 'sdf-font' ? 'page' : undefined} href="/sdf-font">SDF Font</a>
+		</li>
+		<li>
+			<a aria-current={segment === 'max-inscribed' ? 'page' : undefined} href="/max-inscribed"
+				>Max Inscribed</a
+			>
+		</li>
+		<li>
+			<a aria-current={segment === 'fps' ? 'page' : undefined} href="/fps"
+				>FPS</a>
+		</li>
+
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
