@@ -1,4 +1,6 @@
 <script charset="utf-8">
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
 	import Toggle from '../../components/Toggle.svelte';
 	import {
@@ -16,29 +18,19 @@
 	import { createScene } from '$lib/setup/scene.js';
 	import { createText } from '$lib/setup/text.js';
 
-	var container;
-	let toggleOn = true;
-	let polarity = toggleOn ? 1 : -1;
-	var i, l;
-	let count = 0;
-	$: {
-		polarity = toggleOn ? 1 : -1;
-		if (mesh && count > 1) {
-			const colorArray = mesh.geometry.getAttribute('color').array;
-			for (i = 0, l = colorArray.length; i < l; i++) {
-				colorArray[i] = 1 - colorArray[i];
-			}
-			mesh.geometry.attributes.color.needsUpdate = true;
-		}
-		count++;
-	}
+	var container = $state();
+	let toggleOn = $state(true);
+	let polarity = $state(() => (toggleOn ? 1 : -1));
+	var i = $state(),
+		l = $state();
+	let count = $state(0);
 	let rx = 0;
-	let ry = 30;
-	let rz = 45;
-	let mesh;
-	let meshContainer;
+	let ry = $state(30);
+	let rz = $state(45);
+	let mesh = $state();
+	let meshContainer = $state();
 	let text;
-	let dipMesh;
+	let dipMesh = $state();
 
 	onMount(async () => {
 		const axesLength = 2;
@@ -79,7 +71,18 @@
 		scene.add(meshContainer);
 		scene.animate();
 	});
-	$: {
+	run(() => {
+		polarity = toggleOn ? 1 : -1;
+		if (mesh && count > 1) {
+			const colorArray = mesh.geometry.getAttribute('color').array;
+			for (i = 0, l = colorArray.length; i < l; i++) {
+				colorArray[i] = 1 - colorArray[i];
+			}
+			mesh.geometry.attributes.color.needsUpdate = true;
+		}
+		count++;
+	});
+	run(() => {
 		if (meshContainer) {
 			// meshContainer.rotation.x = rx
 			// meshContainer.rotation.y = -ry * Math.PI / 180
@@ -90,14 +93,14 @@
 			mesh.geometry.attributes.dip.needsUpdate = true;
 			mesh.geometry.attributes.dipDirection.needsUpdate = true;
 		}
-	}
+	});
 </script>
 
 <svelte:head>
 	<title>Structural Disks</title>
 </svelte:head>
 <div class="container">
-	<div bind:this={container} />
+	<div bind:this={container}></div>
 	<div class="minimal-ui">
 		<div style="display: grid; margin-left: 1rem;">
 			<!-- <div class="ui&#45;item"> -->
@@ -173,14 +176,18 @@
 		height: 8.4px;
 		cursor: pointer;
 		animate: 0.2s;
-		box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		box-shadow:
+			1px 1px 1px #000000,
+			0px 0px 1px #0d0d0d;
 		background: #3071a9;
 		border-radius: 1.3px;
 		border: 0.2px solid #010101;
 	}
 
 	input[type='range']::-webkit-slider-thumb {
-		box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		box-shadow:
+			1px 1px 1px #000000,
+			0px 0px 1px #0d0d0d;
 		border: 1px solid #000000;
 		height: 36px;
 		width: 16px;
@@ -200,14 +207,18 @@
 		height: 8.4px;
 		cursor: pointer;
 		animate: 0.2s;
-		box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		box-shadow:
+			1px 1px 1px #000000,
+			0px 0px 1px #0d0d0d;
 		background: #3071a9;
 		border-radius: 1.3px;
 		border: 0.2px solid #010101;
 	}
 
 	input[type='range']::-moz-range-thumb {
-		box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		box-shadow:
+			1px 1px 1px #000000,
+			0px 0px 1px #0d0d0d;
 		border: 1px solid #000000;
 		height: 36px;
 		width: 16px;
@@ -231,18 +242,24 @@
 		background: #2a6495;
 		border: 0.2px solid #010101;
 		border-radius: 2.6px;
-		box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		box-shadow:
+			1px 1px 1px #000000,
+			0px 0px 1px #0d0d0d;
 	}
 
 	input[type='range']::-ms-fill-upper {
 		background: #3071a9;
 		border: 0.2px solid #010101;
 		border-radius: 2.6px;
-		box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		box-shadow:
+			1px 1px 1px #000000,
+			0px 0px 1px #0d0d0d;
 	}
 
 	input[type='range']::-ms-thumb {
-		box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+		box-shadow:
+			1px 1px 1px #000000,
+			0px 0px 1px #0d0d0d;
 		border: 1px solid #000000;
 		height: 36px;
 		width: 16px;

@@ -11,11 +11,11 @@
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	var container;
+	var container = $state();
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	var plot2d;
+	var plot2d = $state();
 	onMount(() => {
 		const scene = createScene(container, {
 			axesLength: 100,
@@ -67,9 +67,9 @@
 </svelte:head>
 
 <div class="minimal-card">
-	<div class="plot-container" bind:this={container} />
+	<div class="plot-container" bind:this={container}></div>
 	<div class="plot2d" bind:this={plot2d}>
-		<div class="plane-center-2d" style={` top: ${$target[1] - 5}px; left: ${$target[0] - 5}px;`} />
+		<div class="plane-center-2d" style={` top: ${$target[1] - 5}px; left: ${$target[0] - 5}px;`}></div>
 	</div>
 </div>
 

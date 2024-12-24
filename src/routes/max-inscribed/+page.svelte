@@ -81,7 +81,7 @@
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	var container;
+	var container = $state();
 
 	/**
 	 * @param {Vector3} vec
@@ -312,7 +312,7 @@
 
 <h1>Scene</h1>
 <div class="minimal-card">
-	<div bind:this={container} />
+	<div bind:this={container}></div>
 </div>
 
 <style>

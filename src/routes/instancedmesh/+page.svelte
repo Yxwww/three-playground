@@ -1,4 +1,6 @@
 <script charset="utf-8">
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
 	import { get, writable } from 'svelte/store';
 	import {
@@ -8,12 +10,12 @@
 	} from '$lib/setup/instancedMesh';
 	import { createScene } from '$lib/setup/scene';
 	import { getStores } from '$app/stores';
-	var container, cylinderContainer, instancedCylinderContainer, scene;
-	let instancedCylinderMesh;
+	var container, cylinderContainer, instancedCylinderContainer = $state(), scene;
+	let instancedCylinderMesh = $state();
 
 	let instances = writable(100000);
 
-	let size = 0.01;
+	let size = $state(0.01);
 
 	onMount(() => {
 		// three instanced mesh scene
@@ -57,11 +59,11 @@
 		scene.animate();
 	});
 
-	$: {
+	run(() => {
 		if (instancedCylinderMesh) {
 			instancedCylinderMesh.material.uniforms.size.value = size;
 		}
-	}
+	});
 	onMount(() => {
 		return () => {
 			scene.remove(instancedCylinderMesh);
@@ -86,13 +88,13 @@
 	</div> -->
 
 	<div class="minimal-card">
-		<div bind:this={instancedCylinderContainer} />
+		<div bind:this={instancedCylinderContainer}></div>
 		<h3 class="text-center">Instanced Cylinder BufferGeometry</h3>
 		<div>
 			<h2>instances:</h2>
 			<input
 				class="input"
-				on:input={(e) => {
+				oninput={(e) => {
 					instances.set(Number(e.currentTarget.value));
 				}}
 				value={$instances}

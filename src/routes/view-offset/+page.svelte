@@ -1,11 +1,11 @@
 <script>
-	import { createScene } from '../../setup/scene.js';
 	import { onMount } from 'svelte';
+	import { createScene } from '$lib/setup/scene';
 
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	var container;
+	var container = $state();
 	onMount(() => {
 		createScene(container, { width: 800, height: 400 }).animate();
 	});
@@ -17,7 +17,7 @@
 
 <h1>view offset</h1>
 <div class="minimal-card">
-	<div bind:this={container} />
+	<div bind:this={container}></div>
 </div>
 
 <style>
