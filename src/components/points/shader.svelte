@@ -14,7 +14,7 @@
 	import { onMount } from 'svelte';
 
 	/** @type {HTMLDivElement} */
-	var container;
+	var container = $state();
 	onMount(() => {
 		const scene = createScene(container, {
 			axesLength: 100,
@@ -60,7 +60,7 @@
 </script>
 
 <div class="minimal-card">
-	<div bind:this={container} />
+	<div bind:this={container}></div>
 </div>
 
 <h1>VertexShader</h1>

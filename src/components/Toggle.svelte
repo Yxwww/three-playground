@@ -1,10 +1,10 @@
 <script charset="utf-8">
-	export let toggle;
+	let { toggle = $bindable() } = $props();
 </script>
 
 <label class="switch">
 	<input type="checkbox" bind:checked={toggle} />
-	<span class="slider" />
+	<span class="slider"></span>
 </label>
 
 <style>

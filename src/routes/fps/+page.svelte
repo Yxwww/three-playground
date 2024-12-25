@@ -7,7 +7,7 @@
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	var container;
+	var container = $state();
 	onMount(() => {
 		const {animate, onRender} = createScene(container, { width: 400, height: 400 });
 		animate();
@@ -30,7 +30,7 @@
 	</li>
 </ul>
 <div class="minimal-card">
-	<div bind:this={container} />
+	<div bind:this={container}></div>
 </div>
 
 <style>

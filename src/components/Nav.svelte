@@ -1,6 +1,12 @@
 <script>
-	/** @type {string} */
-	export let segment;
+	
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} segment
+	 */
+
+	/** @type {Props} */
+	let { segment } = $props();
 </script>
 
 <nav>

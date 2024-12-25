@@ -22,7 +22,7 @@
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	var container;
+	var container = $state();
 	onMount(() => {
 		const scene = createScene(container, { width: 300, height: 600 });
 		scene.camera.setPos(5, 5, 5);
@@ -48,7 +48,7 @@
 
 <h1>Scene</h1>
 <div class="minimal-card">
-	<div bind:this={container} />
+	<div bind:this={container}></div>
 </div>
 
 <style>
