@@ -1,15 +1,14 @@
-module.exports = {
-	root: true,
-	extends: ['eslint:recommended', 'prettier'],
-	plugins: ['svelte3'],
-	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
-	parserOptions: {
-		sourceType: 'module',
-		ecmaVersion: 2020
+import eslintPluginSvelte from 'eslint-plugin-svelte';
+import prettier from 'eslint-plugin-prettier';
+export default [
+	// add more generic rule sets here, such as:
+	// js.configs.recommended,
+	...eslintPluginSvelte.configs.recommended,
+	{
+		rules: {
+			// override/add rules settings here, such as:
+			// 'svelte/rule-name': 'error'
+		}
 	},
-	env: {
-		browser: true,
-		es2017: true,
-		node: true
-	}
-};
+	prettier
+];

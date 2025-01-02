@@ -4,9 +4,6 @@
 	import { createScene } from '$lib/setup/scene.js';
 	import { onMount } from 'svelte';
 
-	/**
-	 * @type {HTMLDivElement}
-	 */
 	var container = $state();
 	onMount(() => {
 		const scene = createScene(container, { width: 400, height: 400 }).animate();
