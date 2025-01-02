@@ -240,6 +240,9 @@ export function createScene(
 					}
 				);
 			});
+		},
+		getGui() {
+			return gui;
 		}
 	};
 
