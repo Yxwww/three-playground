@@ -23,14 +23,17 @@
 		create(scene);
 		const gui = scene.getGui();
 		const state = {
-			curve: 180
+			angleSpan: 180,
+			innerScale: 0.5
 		};
 
-		gui.add(state, 'curve', 0, 360).onChange(
-			/** @param {number} value */ (value) => {
-				update({ angleSpan: MathUtils.degToRad(value) });
-			}
-		);
+		gui.add(state, 'angleSpan', 0, 360).onChange(() => {
+			update({ ...state, angleSpan: MathUtils.degToRad(state.angleSpan) });
+		});
+
+		gui.add(state, 'innerScale', 0, 1, 0.1).onChange(() => {
+			update({ ...state, angleSpan: MathUtils.degToRad(state.angleSpan) });
+		});
 
 		scene.animate();
 		return () => {
@@ -50,14 +53,13 @@
 		/**
 		 * @param {any} s
 		 */
-		function create(s, { angleSpan = Math.PI } = {}) {
+		function create(s, { angleSpan = Math.PI, innerScale = 0.5 } = {}) {
 			// Create a group
 			group = new Group();
 
 			// Parameters for the curve
 			const numObjects = 20; // Number of objects in the curve
 			const curveRadius = 3; // Radius of the outer curve
-			const innerScale = 0.5; // Factor for the inner curve (smaller radius)
 
 			// Create objects and position them in the curve
 			for (let i = 0; i < numObjects; i++) {
@@ -87,7 +89,7 @@
 				if (!group) return;
 				scene.remove(group);
 			},
-			update({ angleSpan = Math.PI }) {
+			update({ angleSpan = Math.PI, innerScale = 0.5 } = {}) {
 				scene.remove(group);
 				// Create a group
 				group = new Group();
@@ -95,7 +97,6 @@
 				// Parameters for the curve
 				const numObjects = 20; // Number of objects in the curve
 				const curveRadius = 3; // Radius of the outer curve
-				const innerScale = 0.5; // Factor for the inner curve (smaller radius)
 
 				// Create objects and position them in the curve
 				for (let i = 0; i < numObjects; i++) {
