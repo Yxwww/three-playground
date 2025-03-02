@@ -8,13 +8,10 @@ import {
 	Scene as ThreeScene,
 	PerspectiveCamera,
 	WebGLRenderer,
-	Vector3,
 	Mesh,
 	AxesHelper,
 	Object3D,
-	TextureLoader,
-	MeshBasicMaterial,
-	MeshLambertMaterial
+	TextureLoader
 } from 'three';
 import { OrbitControls } from './orbitControl';
 import { printVector3 } from './utils';
@@ -45,6 +42,7 @@ export function createScene(
 	}
 ) {
 	const camera = new PerspectiveCamera(45, width / height, cameraConfig.near, cameraConfig.far);
+	camera.up.set(0, 0, 1);
 	camera.position.x = cameraConfig.pos[0];
 	camera.position.y = cameraConfig.pos[1];
 	camera.position.z = cameraConfig.pos[2];
@@ -67,13 +65,13 @@ export function createScene(
 	// const light = new DirectionalLight(0xffffff, 0.5)
 	// light.position.set(0, 0, 2)
 	// scene.add(light)
-	// const top = new DirectionalLight(0xffffff, 0.7);
-	// top.position.set(0, -1, 0);
-	// scene.add(top);
+	const topLight = new DirectionalLight(0xffffff, 2);
+	topLight.position.set(0, 0, 5);
+	scene.add(topLight);
 	// const bottom = new DirectionalLight(0xffffff, 0.5);
 	// bottom.position.set(0, 1, 0);
 	// scene.add(bottom);
-	const cameraLight = new DirectionalLight(0xffffff, 0.9);
+	const cameraLight = new DirectionalLight(0xffffff, 1);
 	scene.add(cameraLight);
 
 	renderer.setPixelRatio(window.devicePixelRatio);
@@ -179,8 +177,11 @@ export function createScene(
 				controls
 			};
 		},
+		getThreeScene() {
+			return scene;
+		},
 		getLight() {
-			return top;
+			return topLight;
 		},
 		getAxisHelper() {
 			return axesHelper;
@@ -204,11 +205,10 @@ export function createScene(
 			onRender = cb;
 		},
 		animate,
-		onDestroy() {
-			// window.removeEventListener('resize', onWindowResize)
-		},
+		onDestroy() {},
 		dispose() {
 			scene.remove();
+			gui.destroy();
 		},
 		/**
 		 * @param {Object3D} threeObject - anything that's a three object
