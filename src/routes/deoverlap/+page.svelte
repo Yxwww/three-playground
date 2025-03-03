@@ -12,9 +12,15 @@
 		Line,
 		LineBasicMaterial,
 		Vector2,
-		Box3
+		Box3Helper,
+		Box3,
+		SphereGeometry,
+		Plane,
+		PlaneHelper,
+		MathUtils,
+		BoxGeometry,
+		Line3
 	} from 'three';
-	import * as THREE from 'three';
 	import { createScene } from '$lib/setup/scene.js';
 	import { onMount } from 'svelte';
 	import type { Nullable } from 'vitest';
@@ -24,8 +30,7 @@
 	let bottomMesh, topMesh;
 	let currentOffset = 0;
 
-	function getCornersOfBox(box) {
-		const box3 = new Box3().setFromObject(box);
+	function getCornersOfBox(box3) {
 		const min = box3.min;
 		const max = box3.max;
 		const corners = [
@@ -65,8 +70,8 @@
 				?.clone() ?? furthestCorner;
 
 		const furthestCornerSphere = new Mesh(
-			new THREE.SphereGeometry(0.1),
-			new THREE.MeshBasicMaterial({ color: 'red' })
+			new SphereGeometry(0.1),
+			new MeshBasicMaterial({ color: 'purple' })
 		);
 		furthestCornerSphere.position.copy(topCornerOfFurthestCorner);
 		scene.add(furthestCornerSphere);
@@ -86,21 +91,21 @@
 			return;
 		}
 		const closestCornerSphere = new Mesh(
-			new THREE.SphereGeometry(0.1),
-			new THREE.MeshBasicMaterial({ color: 'red' })
+			new SphereGeometry(0.1),
+			new MeshBasicMaterial({ color: 'red' })
 		);
 		closestCornerSphere.position.copy(closestCornerOfTopBox);
 		scene.add(closestCornerSphere);
 
-		const parallelZPlaneOfClosestPoint = new THREE.Plane(
+		const parallelZPlaneOfClosestPoint = new Plane(
 			new Vector3(0, 0, 1),
 			-closestCornerOfTopBox.z // TODO: double check z
 		);
-		const helper = new THREE.PlaneHelper(parallelZPlaneOfClosestPoint, 5, 0xffff00);
+		const helper = new PlaneHelper(parallelZPlaneOfClosestPoint, 5, 0xffff00);
 		scene.add(helper);
 		console.log('helper', helper.position);
 
-		const lineFromCameraToTopCornerOfFurthestCorner = new THREE.Line3(
+		const lineFromCameraToTopCornerOfFurthestCorner = new Line3(
 			camera.position.clone(),
 			topCornerOfFurthestCorner.clone()
 		);
@@ -115,7 +120,7 @@
 		}
 
 		const lineToPlaneIntersectPointSphere = new Mesh(
-			new THREE.SphereGeometry(0.1),
+			new SphereGeometry(0.1),
 			new MeshBasicMaterial({ color: 'green' })
 		);
 		lineToPlaneIntersectPointSphere.position.copy(lineToPlaneIntersectPoint);
@@ -127,7 +132,7 @@
 			closestCornerOfTopBox.z
 		);
 		const cameraVerticalProjectionPointToPlaneSphere = new Mesh(
-			new THREE.SphereGeometry(0.1),
+			new SphereGeometry(0.1),
 			new MeshBasicMaterial({ color: 'blue' })
 		);
 		cameraVerticalProjectionPointToPlaneSphere.position.copy(cameraVerticalProjectionPointToPlane);
@@ -142,7 +147,7 @@
 		const projected = intersectToClosetPointVector.dot(unit);
 
 		const projectedSphee = new Mesh(
-			new THREE.SphereGeometry(0.1),
+			new SphereGeometry(0.1),
 			new MeshBasicMaterial({ color: 'cyan' })
 		);
 		projectedSphee.position.copy(unit.multiplyScalar(projected).add(lineToPlaneIntersectPoint));
@@ -157,7 +162,7 @@
 		const angle = Math.atan2(d1, d2);
 
 		const zOffset = Math.tan(angle) * projected;
-		console.log('cameraTilt', THREE.MathUtils.radToDeg(angle), {
+		console.log('cameraTilt', MathUtils.radToDeg(angle), {
 			zOffset,
 			projected,
 			multiplier: Math.tan(angle)
@@ -165,12 +170,12 @@
 		// console.log('zOffset', zOffset);
 
 		// Get the height of the top box
-		const topBoxSize = new THREE.Box3().setFromObject(topBox).getSize(new THREE.Vector3());
+		const topBoxSize = topBox.getSize(new Vector3());
 		const topBoxHeight = topBoxSize.z;
 		console.log('topBoxHeight', topBoxHeight);
-		if (zOffset > 0) {
-			topMesh.position.z += zOffset - topBoxHeight;
-		}
+		return zOffset;
+		// furthestCornerSphere.visible = false;
+		// lineToPlaneIntersectPointSphere.visible = false;
 	}
 
 	onMount(() => {
@@ -181,7 +186,7 @@
 		threeScene.background = new Color('black');
 
 		bottomMesh = new Mesh(
-			new THREE.BoxGeometry(2, 2, 0.1),
+			new BoxGeometry(2, 2, 0.1),
 			new MeshPhongMaterial({
 				color: 'blue'
 			})
@@ -189,8 +194,8 @@
 		scene.add(bottomMesh);
 
 		topMesh = new Mesh(
-			new THREE.BoxGeometry(2, 2, 0.1),
-			new THREE.MeshPhongMaterial({
+			new BoxGeometry(2, 2, 0.1),
+			new MeshPhongMaterial({
 				color: 'yellow'
 			})
 		);
@@ -212,7 +217,21 @@
 						// const offset = offsetZToNotOverlap(camera, scene, bottomMesh, topMesh);
 						// console.log('found offset', offset);
 						//
-						computeZOffsetOfTopBoxToAvoidOverlapping(bottomMesh, topMesh, camera, scene);
+						// bottomMesh.geometry.computeBoundingBox();
+						// topMesh.geometry.computeBoundingBox();
+						// const bottomBoxHelper = new Box3Helper(
+						// 	bottomMesh.geometry.boundingBox,
+						// 	new THREE.Color('yellow')
+						// );
+						// scene.add(bottomBoxHelper);
+						// const topBoxHelper = new Box3Helper(topMesh.geometry.boundingBox, new THREE.Color('red'));
+						// scene.add(topBoxHelper);
+						const bottomBox = new Box3().setFromObject(bottomMesh);
+						const topBox = new Box3().setFromObject(topMesh);
+						const zOffset = computeZOffsetOfTopBoxToAvoidOverlapping(bottomBox, topBox, camera, scene);
+						if (zOffset != null && zOffset > 0) {
+							topMesh.position.z += zOffset;
+						}
 					}
 				},
 				'offset'
@@ -224,9 +243,8 @@
 			.add(
 				{
 					reset: () => {
-						// topMesh.position.z = 1; // Reset to original position
-						// currentOffset = 0;
-						// console.log('Reset position of top mesh');
+						topMesh.position.z = 1; // Reset to original position
+						console.log('Reset position of top mesh');
 					}
 				},
 				'reset'
