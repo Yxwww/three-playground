@@ -13,6 +13,7 @@
 		scene.add(myText);
 
 		myText.text = 'HELLO WORLD!';
+    myText.font = 'https://fonts.gstatic.com/s/cutivemono/v6/m8JWjfRfY7WVjVi2E-K9H6RCTmg.woff'
 		myText.fontSize = 4;
 		myText.position.z = -2;
 		myText.color = 0x000000;
