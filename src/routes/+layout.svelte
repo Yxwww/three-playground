@@ -1,4 +1,5 @@
 <script>
+	import "../app.css";
 	import Nav from '../components/Nav.svelte';
 	import { url } from '../utils/url';
 	import '../global.css';
@@ -6,7 +7,7 @@
 	 * @typedef {Object} Props
 	 * @property {import('svelte').Snippet} [children]
 	 */
-
+	
 	/** @type {Props} */
 	let { children } = $props();
 </script>

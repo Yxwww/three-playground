@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { Button } from 'flowbite-svelte';
 	import {
 		createPrograms,
 		getGLRenderingContext,
@@ -60,7 +61,7 @@
 		if (!drag) {
 			clicked(e);
 		}
-		if (!container) return
+		if (!container) return;
 		drag = false;
 		container.removeEventListener('mouseup', mouseup);
 		container.removeEventListener('mousemove', mousemove);
@@ -92,28 +93,21 @@
 		const { draw } = createScene(gl, program);
 		cameraStore.subscribe(({ rotation, translation, scaleVec }) => {
 			const rotationMatrix = m4.multiplyTwoMatrix(
-					m4.multiplyTwoMatrix(m4.xRotation(degToRad(rotation[0])), m4.yRotation(degToRad(rotation[1]))),
-					m4.zRotation(degToRad(rotation[2]))
-				);
-			const scalingMatrix = m4.scaling(...scaleVec)
+				m4.multiplyTwoMatrix(m4.xRotation(degToRad(rotation[0])), m4.yRotation(degToRad(rotation[1]))),
+				m4.zRotation(degToRad(rotation[2]))
+			);
+			const scalingMatrix = m4.scaling(...scaleVec);
 			const translationMatrix = m4.translation(...translation);
 
-			var cameraMatrix = m4.multiply(
-				rotationMatrix,
-				scalingMatrix,
-				translationMatrix
-			);
+			var cameraMatrix = m4.multiply(rotationMatrix, scalingMatrix, translationMatrix);
 
 			const viewMatrix = inverse(cameraMatrix);
 
-			var viewProjectionMatrix = m4.multiply(
-					projectionMatrix,
-					viewMatrix
-			);
+			var viewProjectionMatrix = m4.multiply(projectionMatrix, viewMatrix);
 
 			raf(() => {
 				draw(viewProjectionMatrix);
-			})
+			});
 		});
 		return () => {
 			console.log('destroy ');
@@ -133,11 +127,7 @@
 
 	function updateRotation() {
 		// rotation.update(([x, y, z]) => [x + rand(), y + rand(), z + rand()]);
-		rotation.update(([x, y, z]) => [
-			360 * Math.random(),
-			360 * Math.random(),
-			360 * Math.random()
-		]);
+		rotation.update(([x, y, z]) => [360 * Math.random(), 360 * Math.random(), 360 * Math.random()]);
 	}
 	function randScale() {
 		scaleVec.update(([x, y, z]) => [rand(), rand(), rand()]);
@@ -151,38 +141,24 @@
 		rotation.update(([x, y, z]) => [x, Number(e.srcElement.value), z]);
 	}
 	function updateTranslate() {
-		translation.update(([x, y, z]) => [x , y, z + 50]);
+		translation.update(([x, y, z]) => [x, y, z + 50]);
 	}
 </script>
 
-<button on:click={updateRotation}>rotation</button>
-<button on:click={randScale}>scale</button>
-<button on:click={updateTranslate}>translate</button>
-<button on:click={reset}>reset</button>
-
-<input type="number" on:change={radiusChanged} min="0" max="180" value={$rotation[2]} />
-
-<div class="app">
-	<div class="ui">
-		<pre>{JSON.stringify($cameraStore, null, 2)}</pre>
+<div class="relative">
+	<div>
+		<Button on:click={updateRotation}>rotation</Button>
+		<Button on:click={randScale}>scale</Button>
+		<Button on:click={updateTranslate}>translate</Button>
+		<Button on:click={reset}>reset</Button>
+		<input type="number" on:change={radiusChanged} min="0" max="180" value={$rotation[2]} />
 	</div>
-	<div bind:this={container} class="plot">
-		<canvas width="800" height="800" bind:this={canvasElement} />
+	<div class="relative">
+		<div class="absoulte">
+			<pre>{JSON.stringify($cameraStore, null, 2)}</pre>
+		</div>
+		<div bind:this={container} class="absolute top-0 left-0">
+			<canvas class="w-80%" width="800" height="800" bind:this={canvasElement}></canvas>
+		</div>
 	</div>
 </div>
-
-<style>
-	h1 {
-		color: purple;
-	}
-	.app {
-		display: flex;
-		flex-direction: row;
-	}
-	.plot {
-		flex: 2;
-	}
-	.ui {
-		flex: 1;
-	}
-</style>
