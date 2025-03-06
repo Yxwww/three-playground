@@ -1,4 +1,4 @@
-<script charset="utf-8">
+<script>
 	let { toggle = $bindable() } = $props();
 </script>
 
