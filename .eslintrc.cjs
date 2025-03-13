@@ -1,5 +1,6 @@
-import eslintPluginSvelte from 'eslint-plugin-svelte';
-import prettier from 'eslint-plugin-prettier';
+const eslintPluginESLint = require('eslint-plugin-eslint');
+const prettierPlugin = require('eslint-plugin-prettier');
+
 export default [
 	// add more generic rule sets here, such as:
 	// js.configs.recommended,

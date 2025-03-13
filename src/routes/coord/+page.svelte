@@ -58,8 +58,6 @@
 			});
 		});
 	});
-
-	export const ssr = false;
 </script>
 
 <svelte:head>

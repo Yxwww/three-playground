@@ -1,12 +1,11 @@
-<script>
-	import { MeshLambertMaterial, PlaneGeometry } from 'three';
-	// import { createScene } from '../../setup/scene.js';
+<script lang="ts">
 	import { createScene } from '$lib/setup/scene.js';
 	import { onMount } from 'svelte';
 
-	var container = $state();
+	let container: HTMLElement;
 	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 }).animate();
+		const scene = createScene(container, { width: 400, height: 400 });
+		scene.animate();
 	});
 </script>
 

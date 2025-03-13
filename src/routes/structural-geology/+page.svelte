@@ -1,4 +1,4 @@
-<script charset="utf-8">
+<script>
 	import { run } from 'svelte/legacy';
 
 	import { onMount } from 'svelte';
