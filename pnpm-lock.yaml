@@ -14,6 +14,9 @@ importers:
       eslint-plugin-svelte:
         specifier: ^2.46.1
         version: 2.46.1(eslint@9.17.0(jiti@2.4.2))(svelte@5.15.0)
+      flowbite-svelte-icons:
+        specifier: ^2.0.2
+        version: 2.0.2(svelte@5.15.0)(tailwind-merge@3.0.2)(tailwindcss@4.0.10)
       max-inscribed-circle:
         specifier: ^2.0.1
         version: 2.0.1
@@ -24,35 +27,35 @@ importers:
         specifier: ^0.156.1
         version: 0.156.1
       troika-three-text:
-        specifier: ^0.49.0
+        specifier: ^0.49.1
         version: 0.49.1(three@0.156.1)
       yuxi-scripts:
         specifier: ^0.0.6
         version: 0.0.6(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.6.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.6.2))(@typescript-eslint/parser@5.62.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.6.2))(eslint@9.17.0(jiti@2.4.2))(prettier@3.4.2)(typescript@5.6.2)
     devDependencies:
       '@playwright/test':
-        specifier: ^1.28.1
+        specifier: ^1.47.2
         version: 1.47.2
       '@sveltejs/adapter-auto':
-        specifier: ^3.0.0
+        specifier: ^3.3.1
         version: 3.3.1(@sveltejs/kit@2.15.0(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.15.0)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1)))(svelte@5.15.0)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1)))
       '@sveltejs/adapter-vercel':
-        specifier: ^4.0.0
+        specifier: ^4.0.5
         version: 4.0.5(@sveltejs/kit@2.15.0(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.15.0)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1)))(svelte@5.15.0)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1)))
       '@sveltejs/kit':
-        specifier: ^2.5.27
+        specifier: ^2.15.0
         version: 2.15.0(@sveltejs/vite-plugin-svelte@4.0.4(svelte@5.15.0)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1)))(svelte@5.15.0)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1))
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^4.0.0
+        specifier: ^4.0.4
         version: 4.0.4(svelte@5.15.0)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1))
       '@tailwindcss/forms':
-        specifier: ^0.5.9
+        specifier: ^0.5.10
         version: 0.5.10(tailwindcss@4.0.10)
       '@tailwindcss/typography':
-        specifier: ^0.5.15
+        specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.0.10)
       '@tailwindcss/vite':
-        specifier: ^4.0.0
+        specifier: ^4.0.10
         version: 4.0.10(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1))
       '@types/polylabel':
         specifier: ^1.1.3
@@ -61,7 +64,7 @@ importers:
         specifier: ^0.158.3
         version: 0.158.3
       eslint:
-        specifier: ^9.0.0
+        specifier: ^9.17.0
         version: 9.17.0(jiti@2.4.2)
       flowbite:
         specifier: ^3.1.2
@@ -70,34 +73,34 @@ importers:
         specifier: ^0.48.4
         version: 0.48.4(rollup@4.29.1)(svelte@5.15.0)
       prettier:
-        specifier: ^3.1.0
+        specifier: ^3.4.2
         version: 3.4.2
       prettier-plugin-svelte:
-        specifier: ^3.2.6
+        specifier: ^3.3.2
         version: 3.3.2(prettier@3.4.2)(svelte@5.15.0)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.11
         version: 0.6.11(prettier-plugin-svelte@3.3.2(prettier@3.4.2)(svelte@5.15.0))(prettier@3.4.2)
       svelte:
-        specifier: ^5.0.0
+        specifier: ^5.15.0
         version: 5.15.0
       svelte-check:
-        specifier: ^4.0.0
+        specifier: ^4.1.1
         version: 4.1.1(svelte@5.15.0)(typescript@5.6.2)
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: ^4.0.10
         version: 4.0.10
       typescript:
-        specifier: ^5.5.0
+        specifier: ^5.6.2
         version: 5.6.2
       vite:
-        specifier: ^5.4.4
+        specifier: ^5.4.11
         version: 5.4.11(@types/node@22.7.4)(lightningcss@1.29.1)
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: ^1.3.0
         version: 1.3.0(rollup@4.29.1)(vite@5.4.11(@types/node@22.7.4)(lightningcss@1.29.1))
       vitest:
-        specifier: ^1.0.0
+        specifier: ^1.6.0
         version: 1.6.0(@types/node@22.7.4)(lightningcss@1.29.1)
 
 packages:
@@ -384,6 +387,12 @@ packages:
 
   '@eslint-community/eslint-utils@4.4.0':
     resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
+
+  '@eslint-community/eslint-utils@4.5.1':
+    resolution: {integrity: sha512-soEIOALTfTK6EjmKMMoLugwaP0rzkad90iIWd1hMO9ARkSAyjfMfkRRhLvD5qH7vvM0Cg72pieUfR6yh6XxC4w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
@@ -1082,6 +1091,15 @@ packages:
       supports-color:
         optional: true
 
+  debug@4.4.0:
+    resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
   deep-eql@4.1.4:
     resolution: {integrity: sha512-SUwdGfqdKOwxCPeVYjwSyRpJ7Z+fhpwIAtmCUdZIWZ/YP5R9WAsyuSgpLVDi9bjWoN2LXHNss/dk3urXtdQxGg==}
     engines: {node: '>=6'}
@@ -1253,8 +1271,8 @@ packages:
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
 
-  fast-glob@3.3.2:
-    resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
+  fast-glob@3.3.3:
+    resolution: {integrity: sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==}
     engines: {node: '>=8.6.0'}
 
   fast-json-stable-stringify@2.1.0:
@@ -1263,8 +1281,8 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
-  fastq@1.17.1:
-    resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
+  fastq@1.19.1:
+    resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==}
 
   fdir@6.4.2:
     resolution: {integrity: sha512-KnhMXsKSPZlAhp7+IjUkRZKPb4fUyccpDrdFXbi4QL1qkmFh9kVY09Yox+n4MaOb3lHZ1Tv829C3oaaXoMYPDQ==}
@@ -1301,6 +1319,14 @@ packages:
 
   flowbite-datepicker@1.3.2:
     resolution: {integrity: sha512-6Nfm0MCVX3mpaR7YSCjmEO2GO8CDt6CX8ZpQnGdeu03WUCWtEPQ/uy0PUiNtIJjJZWnX0Cm3H55MOhbD1g+E/g==}
+
+  flowbite-svelte-icons@2.0.2:
+    resolution: {integrity: sha512-Vkmduy2867Rk8R7TziPirsWkixJnToFBEXRaN4ouJabOx62NQjiBbHFe+HTaMOQmdp4FNMI2Nhtk2I2CQ8r3RQ==}
+    engines: {node: '>=18.0.0', npm: '>=7.0.0'}
+    peerDependencies:
+      svelte: ^5.0.0
+      tailwind-merge: ^2.3.0
+      tailwindcss: ^3.4.3
 
   flowbite-svelte@0.48.4:
     resolution: {integrity: sha512-ivlBxNi2u9+D/nFeHs+vLJU6nYjKq/ooAwdXPP3qIlEnUyIl/hVsH87JtVWwVEgF31NwwQcZeKFkWd8K5DWiGw==}
@@ -1934,8 +1960,8 @@ packages:
     engines: {node: '>= 0.4'}
     hasBin: true
 
-  reusify@1.0.4:
-    resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
+  reusify@1.1.0:
+    resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
   rimraf@3.0.2:
@@ -1964,6 +1990,11 @@ packages:
 
   semver@7.6.3:
     resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.7.1:
+    resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -2470,6 +2501,11 @@ snapshots:
       eslint: 9.17.0(jiti@2.4.2)
       eslint-visitor-keys: 3.4.3
 
+  '@eslint-community/eslint-utils@4.5.1(eslint@9.17.0(jiti@2.4.2))':
+    dependencies:
+      eslint: 9.17.0(jiti@2.4.2)
+      eslint-visitor-keys: 3.4.3
+
   '@eslint-community/regexpp@4.12.1': {}
 
   '@eslint/config-array@0.19.1':
@@ -2576,7 +2612,7 @@ snapshots:
   '@nodelib/fs.walk@1.2.8':
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
-      fastq: 1.17.1
+      fastq: 1.19.1
 
   '@playwright/test@1.47.2':
     dependencies:
@@ -2932,12 +2968,12 @@ snapshots:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/type-utils': 5.62.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.6.2)
       '@typescript-eslint/utils': 5.62.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.6.2)
-      debug: 4.3.7
+      debug: 4.4.0
       eslint: 9.17.0(jiti@2.4.2)
       graphemer: 1.4.0
       ignore: 5.3.2
       natural-compare-lite: 1.4.0
-      semver: 7.6.3
+      semver: 7.7.1
       tsutils: 3.21.0(typescript@5.6.2)
     optionalDependencies:
       typescript: 5.6.2
@@ -2949,7 +2985,7 @@ snapshots:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.6.2)
-      debug: 4.3.7
+      debug: 4.4.0
       eslint: 9.17.0(jiti@2.4.2)
     optionalDependencies:
       typescript: 5.6.2
@@ -2965,7 +3001,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.6.2)
       '@typescript-eslint/utils': 5.62.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.6.2)
-      debug: 4.3.7
+      debug: 4.4.0
       eslint: 9.17.0(jiti@2.4.2)
       tsutils: 3.21.0(typescript@5.6.2)
     optionalDependencies:
@@ -2979,10 +3015,10 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
-      debug: 4.3.7
+      debug: 4.4.0
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.6.3
+      semver: 7.7.1
       tsutils: 3.21.0(typescript@5.6.2)
     optionalDependencies:
       typescript: 5.6.2
@@ -2991,7 +3027,7 @@ snapshots:
 
   '@typescript-eslint/utils@5.62.0(eslint@9.17.0(jiti@2.4.2))(typescript@5.6.2)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.17.0(jiti@2.4.2))
+      '@eslint-community/eslint-utils': 4.5.1(eslint@9.17.0(jiti@2.4.2))
       '@types/json-schema': 7.0.15
       '@types/semver': 7.5.8
       '@typescript-eslint/scope-manager': 5.62.0
@@ -2999,7 +3035,7 @@ snapshots:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.6.2)
       eslint: 9.17.0(jiti@2.4.2)
       eslint-scope: 5.1.1
-      semver: 7.6.3
+      semver: 7.7.1
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -3213,6 +3249,10 @@ snapshots:
   cssesc@3.0.0: {}
 
   debug@4.3.7:
+    dependencies:
+      ms: 2.1.3
+
+  debug@4.4.0:
     dependencies:
       ms: 2.1.3
 
@@ -3452,7 +3492,7 @@ snapshots:
 
   fast-deep-equal@3.1.3: {}
 
-  fast-glob@3.3.2:
+  fast-glob@3.3.3:
     dependencies:
       '@nodelib/fs.stat': 2.0.5
       '@nodelib/fs.walk': 1.2.8
@@ -3464,9 +3504,9 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fastq@1.17.1:
+  fastq@1.19.1:
     dependencies:
-      reusify: 1.0.4
+      reusify: 1.1.0
 
   fdir@6.4.2: {}
 
@@ -3500,6 +3540,12 @@ snapshots:
       flowbite: 2.5.2(rollup@4.29.1)
     transitivePeerDependencies:
       - rollup
+
+  flowbite-svelte-icons@2.0.2(svelte@5.15.0)(tailwind-merge@3.0.2)(tailwindcss@4.0.10):
+    dependencies:
+      svelte: 5.15.0
+      tailwind-merge: 3.0.2
+      tailwindcss: 4.0.10
 
   flowbite-svelte@0.48.4(rollup@4.29.1)(svelte@5.15.0):
     dependencies:
@@ -3591,7 +3637,7 @@ snapshots:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.3.2
+      fast-glob: 3.3.3
       ignore: 5.3.2
       merge2: 1.4.1
       slash: 3.0.0
@@ -4019,7 +4065,7 @@ snapshots:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
-  reusify@1.0.4: {}
+  reusify@1.1.0: {}
 
   rimraf@3.0.2:
     dependencies:
@@ -4063,6 +4109,8 @@ snapshots:
   semver@6.3.1: {}
 
   semver@7.6.3: {}
+
+  semver@7.7.1: {}
 
   set-blocking@2.0.0: {}
 
