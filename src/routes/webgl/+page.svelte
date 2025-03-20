@@ -10,21 +10,14 @@
 		m4,
 		degToRad
 	} from '$lib/webgl';
-	import { derived } from 'svelte/store';
-	import { tweened } from 'svelte/motion';
+	import { Tween } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { raf } from '$lib/webgl/utils';
 	function rand() {
 		return Math.random();
 	}
-	/**
-	 * @type {HTMLCavnasElement | undefined}
-	 */
-	let canvasElement;
-	/**
-	 * @type {HTMLDivElement | undefined}
-	 */
-	let container;
+	let canvasElement: HTMLCanvasElement | undefined;
+	let container: HTMLDivElement | undefined;
 	let drag = false;
 	let dragState = {
 		start: [0, 0]
@@ -34,22 +27,20 @@
 	/**
 	 * @type {[number, number, number]}
 	 */
-	const SCALE_VEC = [1, 1, 1];
+	const SCALE_VEC: Vec3 = [1, 1, 1];
 
-	const rotation = tweened(DEFAULT_ROTATION, {
+	const rotation = new Tween(DEFAULT_ROTATION, {
 		easing: cubicOut,
 		duration: 2000
 	});
-	const translation = tweened(DEFAULT_TRANSLATION, { easing: cubicOut });
-	const scaleVec = tweened(SCALE_VEC, { easing: cubicOut, duration: 1000 });
-	const cameraStore = derived(
-		[rotation, translation, scaleVec],
-		([$rotation, $transition, $scaleVec]) => ({
-			rotation: $rotation,
-			translation: $transition,
-			scaleVec: $scaleVec
-		})
-	);
+	const translation = new Tween(DEFAULT_TRANSLATION, { easing: cubicOut });
+	const scaleVec = new Tween(SCALE_VEC, { easing: cubicOut, duration: 1000 });
+	const cameraState = $derived.by(() => ({
+		rotation: rotation,
+		translation: translation,
+		scaleVec: scaleVec
+	}));
+	rotation.current;
 
 	function clicked(e) {
 		console.log('clicked', e);
@@ -77,7 +68,7 @@
 	// 	container.addEventListener('mouseup', mouseup);
 	// 	container.addEventListener('mousemove', mousemove);
 	// }
-
+	//
 	onMount(() => {
 		// container.addEventListener('mousedown', mousedown);
 		if (!canvasElement) return () => {};
@@ -91,7 +82,7 @@
 		const projectionMatrix = perspective(degToRad(60), gl.canvas.width / gl.canvas.width, 1, 2000);
 		const radius = 200;
 		const { draw } = createScene(gl, program);
-		cameraStore.subscribe(({ rotation, translation, scaleVec }) => {
+		cameraState.subscribe(({ rotation, translation, scaleVec }) => {
 			const rotationMatrix = m4.multiplyTwoMatrix(
 				m4.multiplyTwoMatrix(m4.xRotation(degToRad(rotation[0])), m4.yRotation(degToRad(rotation[1]))),
 				m4.zRotation(degToRad(rotation[2]))
@@ -151,11 +142,11 @@
 		<Button on:click={randScale}>scale</Button>
 		<Button on:click={updateTranslate}>translate</Button>
 		<Button on:click={reset}>reset</Button>
-		<input type="number" on:change={radiusChanged} min="0" max="180" value={$rotation[2]} />
+		<input type="number" on:change={radiusChanged} min="0" max="180" value={rotation[2]} />
 	</div>
 	<div class="relative">
 		<div class="absoulte">
-			<pre>{JSON.stringify($cameraStore, null, 2)}</pre>
+			<pre>{JSON.stringify($cameraState, null, 2)}</pre>
 		</div>
 		<div bind:this={container} class="absolute top-0 left-0">
 			<canvas class="w-80%" width="800" height="800" bind:this={canvasElement}></canvas>
