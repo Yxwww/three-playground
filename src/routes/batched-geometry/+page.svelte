@@ -4,18 +4,18 @@
 	import { onMount } from 'svelte';
 	import {
 		BatchedMesh,
+		ExtrudeGeometry,
 		Matrix4,
 		Mesh,
 		MeshBasicMaterial,
 		PlaneGeometry,
 		TextureLoader
 	} from 'three';
-	import { GeometryUtils } from 'three/examples/jsm/Addons.js';
-
+	import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 	let container: HTMLElement;
 	const textureLoader = new TextureLoader();
 	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 });
+		const scene = createScene(container, { width: 1000, height: 1000 });
 		scene.animate();
 		const material = new MeshBasicMaterial({ color: 0xffffff });
 		const geometry1 = new PlaneGeometry(1, 1);
@@ -39,6 +39,56 @@
 			material.needsUpdate = true;
 		});
 		scene.add(batchedMesh);
+
+		// Create a slightly distorted plane
+		const width = 1.5,
+			height = 1.2;
+		const widthSegments = 4,
+			heightSegments = 4;
+		const irregularPlaneGeometry = new PlaneGeometry(width, height, widthSegments, heightSegments);
+		const positions = irregularPlaneGeometry.attributes.position;
+
+		// Distort the vertices slightly for an irregular shape
+		for (let i = 0; i < positions.count; i++) {
+			const x = positions.getX(i);
+			const y = positions.getY(i);
+			const z = positions.getZ(i);
+
+			// Add some random distortion to create an irregular shape
+			positions.setX(i, x + (Math.random() - 0.5) * 0.2);
+			positions.setY(i, y + (Math.random() - 0.5) * 0.2);
+		}
+
+		// Update the geometry
+		irregularPlaneGeometry.computeVertexNormals();
+		const gui = new GUI();
+		material.wireframe = false;
+		const materialFolder = gui.addFolder('Material');
+		materialFolder.add(material, 'wireframe').name('Wireframe');
+		const irregularPlaneMesh = new Mesh(irregularPlaneGeometry, material);
+		irregularPlaneMesh.rotateZ(Math.PI / 4);
+		irregularPlaneMesh.position.set(2, 0, 0);
+
+		const uvs = irregularPlaneGeometry.attributes.uv;
+
+		// Rotate UVs around center (0.5, 0.5)
+		const angle = Math.PI / 4; // 45 degrees
+		const cos = Math.cos(angle);
+		const sin = Math.sin(angle);
+
+		for (let i = 0; i < uvs.count; i++) {
+			const u = uvs.getX(i) - 0.5;
+			const v = uvs.getY(i) - 0.5;
+
+			// Apply rotation
+			uvs.setX(i, u * cos - v * sin + 0.5);
+			uvs.setY(i, u * sin + v * cos + 0.5);
+		}
+
+		// Mark the attribute for update
+		uvs.needsUpdate = true;
+
+		scene.add(irregularPlaneMesh);
 	});
 </script>
 

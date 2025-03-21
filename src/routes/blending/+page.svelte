@@ -15,7 +15,7 @@
 	/**
 	 * @type {HTMLDivElement}
 	 */
-	var container = $state();
+	var container;
 	onMount(() => {
 		const scene = createScene(container, { width: 900, height: 700 });
 		scene.camera.setPos(0, 0, 5);
@@ -33,9 +33,9 @@
 				});
 				const geometry = new PlaneGeometry(1.5, 1.5);
 				const mesh = new Mesh(geometry, material);
-				mesh.renderOrder = 1
+				mesh.renderOrder = 1;
 				mesh.position.setZ(0.6);
-				mesh.rotateX(-Math.PI/4)
+				mesh.rotateX(-Math.PI / 4);
 
 				scene.add(mesh);
 				console.log('second');
@@ -52,7 +52,7 @@
 				});
 				const geometry = new PlaneGeometry(1.5, 1.5);
 				const mesh = new Mesh(geometry, material);
-				mesh.renderOrder  = 2
+				mesh.renderOrder = 2;
 				mesh.position.setZ(0.5);
 				// mesh.rotateX(Math.PI/4)
 
@@ -73,7 +73,7 @@
 
 <h1>Scene</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<div bind:this={container} />
 </div>
 
 <style>

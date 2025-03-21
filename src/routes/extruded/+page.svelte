@@ -2,6 +2,7 @@
 	import { createScene } from '$lib/setup/scene.js';
 	import { onMount } from 'svelte';
 	import {
+		DoubleSide,
 		ExtrudeGeometry,
 		Mesh,
 		MeshBasicMaterial,
@@ -15,6 +16,8 @@
 	const textureloader = new TextureLoader();
 	onMount(() => {
 		const scene = createScene(container, { width: 1000, height: 1000 });
+		scene.camera.target(6.530835742683074, -1.403718767928772, 2.1484541870938918e-17);
+		scene.camera.setPos(-1.3718229301479372, 31.654304538377083, 25.81158269462667);
 		scene.animate();
 
 		// Create a store-like shape for a mall
@@ -37,9 +40,9 @@
 		// Define extrude settings
 		const extrudeSettings = {
 			depth: 2,
-			// bevelEnabled: true,
-			// bevelSegments: 2,
-			// bevelSize: 0.2,
+			bevelEnabled: true,
+			bevelSegments: 2,
+			bevelSize: 0.2,
 			bevelThickness: 0.2
 		};
 		const extruded = new ExtrudeGeometry(storeShape, extrudeSettings);
@@ -50,15 +53,15 @@
 		mesh.scale.set(0.5, 0.5, 0.5);
 		scene.add(mesh);
 
-		const material2 = new MeshBasicMaterial({});
+		const material2 = new MeshBasicMaterial({ side: DoubleSide });
 		const plane = new Mesh(new PlaneGeometry(10, 10), material2);
 		plane.position.x = 20;
 
 		scene.add(plane);
 
 		textureloader.load('https://threejs.org/examples/textures/uv_grid_opengl.jpg', (texture) => {
-			texture.repeat.set(2, 2);
-			texture.wrapS = texture.wrapT = RepeatWrapping;
+			// texture.repeat.set(2, 2);
+			// texture.wrapS = texture.wrapT = RepeatWrapping;
 
 			material.map = texture;
 			material.needsUpdate = true;
@@ -66,6 +69,7 @@
 			material2.map = texture;
 			material2.needsUpdate = true;
 		});
+		window.scene = scene;
 	});
 </script>
 
