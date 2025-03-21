@@ -10,7 +10,10 @@
 		DoubleSide,
 		Mesh,
 		MeshBasicMaterial,
+		MirroredRepeatWrapping,
+		NearestFilter,
 		PlaneGeometry,
+		RepeatWrapping,
 		ShaderMaterial,
 		TextureLoader,
 		Vector4
@@ -36,6 +39,11 @@
 		});
 		const mesh = new Mesh(new PlaneGeometry(2, 2), material);
 		textureLoader.load('/images/tiny-rick-square.png', (texture) => {
+			texture.wrapS = RepeatWrapping;
+			// texture.wrapT = MirroredRepeatWrapping;
+			texture.wrapT = RepeatWrapping;
+			texture.magFilter = NearestFilter;
+			// texture.magFilter = BilinearFilter;
 			material.uniforms.diffuse = { value: texture };
 			material.needsUpdate = true;
 		});
