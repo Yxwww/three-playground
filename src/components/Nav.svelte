@@ -1,4 +1,14 @@
 <script>
+	import { 
+		Navbar, 
+		NavBrand, 
+		NavLi, 
+		NavUl, 
+		NavHamburger,
+		Dropdown,
+		DropdownItem,
+		DropdownDivider
+	} from 'flowbite-svelte';
 	
 	/**
 	 * @typedef {Object} Props
@@ -7,94 +17,82 @@
 
 	/** @type {Props} */
 	let { segment } = $props();
+
+	// Group the routes by category
+	const categories = [
+		{
+			name: 'Scene & Rendering',
+			routes: [
+				{ path: 'scene', title: 'Scene' },
+				{ path: 'instancedmesh', title: 'Instanced Mesh' },
+				{ path: 'batched-geometry', title: 'Batched Geometry' },
+				{ path: 'fps', title: 'FPS' },
+				{ path: 'textures', title: 'Textures' }
+			]
+		},
+		{
+			name: 'Geometry',
+			routes: [
+				{ path: 'pointcloud', title: 'Point Cloud' },
+				{ path: 'extruded', title: 'Extruded' },
+				{ path: 'structural-geology', title: 'Structural Geology' },
+				{ path: 'max-inscribed', title: 'Max Inscribed' },
+				{ path: 'deoverlap', title: 'Deoverlap' },
+				{ path: 'spine', title: 'Spine' }
+			]
+		},
+		{
+			name: 'Camera & Controls',
+			routes: [
+				{ path: 'orbit-pivot', title: 'Orbit Pivot' },
+				{ path: 'orbit-pivot/offset', title: 'Orbit Pivot Offset' },
+				{ path: 'view-offset', title: 'View Offset' },
+				{ path: 'coord', title: 'Coordinates' }
+			]
+		},
+		{
+			name: 'Visual Effects',
+			routes: [
+				{ path: 'blending', title: 'Blending' },
+				{ path: 'blending/transparency', title: 'Transparency' },
+				{ path: 'sdf-font', title: 'SDF Font' },
+				{ path: 'fan', title: 'Fan' }
+			]
+		},
+		{
+			name: 'Shaders & WebGL',
+			routes: [
+				{ path: 'webgl', title: 'WebGL' },
+				{ path: 'shader-course/functions', title: 'Shader Functions' },
+				{ path: 'shader-course/textures', title: 'Shader Textures' }
+			]
+		}
+	];
+
+	let isActive = (path) => {
+		if (path === '' && segment === '') return true;
+		if (path !== '' && segment.startsWith(path)) return true;
+		return false;
+	};
 </script>
 
-<nav>
-	<ul>
-		<li><a aria-current={segment === '' ? 'page' : undefined} href=".">Home</a></li>
-		<li><a aria-current={segment === 'scene' ? 'page' : undefined} href="/scene">Scene</a></li>
-		<li>
-			<a aria-current={segment === 'instancedmesh' ? 'page' : undefined} href="/instancedmesh"
-				>InstancedMesh</a
-			>
-		</li>
-		<li>
-			<a
-				aria-current={segment === 'structural-geology' ? 'page' : undefined}
-				href="/structural-geology">Structural Geology</a
-			>
-		</li>
-		<li>
-			<a aria-current={segment === 'pointcloud' ? 'page' : undefined} href="/pointcloud">PointCloud</a>
-		</li>
-		<li>
-			<a aria-current={segment === 'coord' ? 'page' : undefined} href="/coord">Coordindate</a>
-		</li>
-		<li>
-			<a aria-current={segment === 'blending' ? 'page' : undefined} href="/blending">Blending</a>
-		</li>
-		<li>
-			<a aria-current={segment === 'sdf-font' ? 'page' : undefined} href="/sdf-font">SDF Font</a>
-		</li>
-		<li>
-			<a aria-current={segment === 'max-inscribed' ? 'page' : undefined} href="/max-inscribed"
-				>Max Inscribed</a
-			>
-		</li>
-		<li>
-			<a aria-current={segment === 'fps' ? 'page' : undefined} href="/fps"
-				>FPS</a>
-		</li>
-
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<!--<li><a rel=prefetch aria-current='{segment === "blog" ? "page" : undefined}' href='blog'>blog</a></li>-->
-	</ul>
-</nav>
-
-<style>
-	nav {
-		border-bottom: 1px solid #b6f5b4;
-		font-weight: 300;
-		padding: 0 1em;
-	}
-
-	ul {
-		margin: 0;
-		padding: 0;
-	}
-
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
-
-	li {
-		display: block;
-		float: left;
-	}
-
-	[aria-current] {
-		position: relative;
-		display: inline-block;
-	}
-
-	[aria-current]::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(70, 183, 66);
-		display: block;
-		bottom: -1px;
-	}
-
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
-	}
-</style>
+<Navbar let:hidden let:toggle rounded class="px-4 py-2.5 bg-gray-50 border-b border-gray-200">
+	<NavHamburger on:click={toggle} />
+	
+	<NavUl {hidden} class="order-1 md:flex w-full">
+		<NavLi href="/" active={segment === ''}>Home</NavLi>
+		
+		{#each categories as category}
+			<NavLi class="cursor-pointer">
+				<span>{category.name}</span>
+				<Dropdown>
+					{#each category.routes as route}
+						<DropdownItem href="/{route.path}" active={isActive(route.path)}>
+							{route.title}
+						</DropdownItem>
+					{/each}
+				</Dropdown>
+			</NavLi>
+		{/each}
+	</NavUl>
+</Navbar>
