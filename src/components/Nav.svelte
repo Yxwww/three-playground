@@ -9,6 +9,7 @@
 		DropdownItem,
 		DropdownDivider
 	} from 'flowbite-svelte';
+	import { categories } from '$lib';
 	
 	/**
 	 * @typedef {Object} Props
@@ -17,57 +18,6 @@
 
 	/** @type {Props} */
 	let { segment } = $props();
-
-	// Group the routes by category
-	const categories = [
-		{
-			name: 'Scene & Rendering',
-			routes: [
-				{ path: 'scene', title: 'Scene' },
-				{ path: 'instancedmesh', title: 'Instanced Mesh' },
-				{ path: 'batched-geometry', title: 'Batched Geometry' },
-				{ path: 'fps', title: 'FPS' },
-				{ path: 'textures', title: 'Textures' }
-			]
-		},
-		{
-			name: 'Geometry',
-			routes: [
-				{ path: 'pointcloud', title: 'Point Cloud' },
-				{ path: 'extruded', title: 'Extruded' },
-				{ path: 'structural-geology', title: 'Structural Geology' },
-				{ path: 'max-inscribed', title: 'Max Inscribed' },
-				{ path: 'deoverlap', title: 'Deoverlap' },
-				{ path: 'spine', title: 'Spine' }
-			]
-		},
-		{
-			name: 'Camera & Controls',
-			routes: [
-				{ path: 'orbit-pivot', title: 'Orbit Pivot' },
-				{ path: 'orbit-pivot/offset', title: 'Orbit Pivot Offset' },
-				{ path: 'view-offset', title: 'View Offset' },
-				{ path: 'coord', title: 'Coordinates' }
-			]
-		},
-		{
-			name: 'Visual Effects',
-			routes: [
-				{ path: 'blending', title: 'Blending' },
-				{ path: 'blending/transparency', title: 'Transparency' },
-				{ path: 'sdf-font', title: 'SDF Font' },
-				{ path: 'fan', title: 'Fan' }
-			]
-		},
-		{
-			name: 'Shaders & WebGL',
-			routes: [
-				{ path: 'webgl', title: 'WebGL' },
-				{ path: 'shader-course/functions', title: 'Shader Functions' },
-				{ path: 'shader-course/textures', title: 'Shader Textures' }
-			]
-		}
-	];
 
 	let isActive = (path) => {
 		if (path === '' && segment === '') return true;

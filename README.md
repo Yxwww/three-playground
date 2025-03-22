@@ -1,18 +1,25 @@
-# create-svelte
+# Three.js Playground
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A collection of Three.js experiments and examples built with Svelte.
 
-## Creating a project
+## Categories
 
-If you're seeing this, you've probably already done this step. Congrats!
+The navigation and homepage grouping is based on a categories system that is auto-generated during build time. 
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### How it works
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+1. The `scripts/generate-categories.js` script scans the `src/routes` directory for all pages
+2. Pages are categorized based on predefined mappings in the script
+3. A `src/lib/categories.js` file is generated with the full category structure
+4. Both the navigation and homepage use this single source of truth
+
+### Adding a new page
+
+1. Create your new page in the appropriate directory under `src/routes`
+2. Add the path to the appropriate category in `scripts/generate-categories.js`
+3. Add a title mapping in the `pathToTitle` object if the auto-generated title isn't suitable
+4. Run `npm run generate-categories` to update the categories file
+5. When you build the project, the script will run automatically
 
 ## Developing
 

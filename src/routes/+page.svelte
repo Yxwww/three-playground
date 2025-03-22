@@ -5,62 +5,7 @@
 <script>
 	import { Card, Heading, P, Badge } from 'flowbite-svelte';
 	import { ArrowRightOutline } from 'flowbite-svelte-icons';
-
-	// Group the routes by category
-	const categories = [
-		{
-			name: 'Scene & Rendering',
-			color: 'blue',
-			routes: [
-				{ path: 'scene', title: 'Scene' },
-				{ path: 'instancedmesh', title: 'Instanced Mesh' },
-				{ path: 'batched-geometry', title: 'Batched Geometry' },
-				{ path: 'fps', title: 'FPS' },
-				{ path: 'textures', title: 'Textures' }
-			]
-		},
-		{
-			name: 'Geometry',
-			color: 'green',
-			routes: [
-				{ path: 'pointcloud', title: 'Point Cloud' },
-				{ path: 'extruded', title: 'Extruded' },
-				{ path: 'structural-geology', title: 'Structural Geology' },
-				{ path: 'max-inscribed', title: 'Max Inscribed' },
-				{ path: 'deoverlap', title: 'Deoverlap' },
-				{ path: 'spine', title: 'Spine' }
-			]
-		},
-		{
-			name: 'Camera & Controls',
-			color: 'red',
-			routes: [
-				{ path: 'orbit-pivot', title: 'Orbit Pivot' },
-				{ path: 'orbit-pivot/offset', title: 'Orbit Pivot Offset' },
-				{ path: 'view-offset', title: 'View Offset' },
-				{ path: 'coord', title: 'Coordinates' }
-			]
-		},
-		{
-			name: 'Visual Effects',
-			color: 'purple',
-			routes: [
-				{ path: 'blending', title: 'Blending' },
-				{ path: 'blending/transparency', title: 'Transparency' },
-				{ path: 'sdf-font', title: 'SDF Font' },
-				{ path: 'fan', title: 'Fan' }
-			]
-		},
-		{
-			name: 'Shaders & WebGL',
-			color: 'yellow',
-			routes: [
-				{ path: 'webgl', title: 'WebGL' },
-				{ path: 'shader-course/functions', title: 'Shader Functions' },
-				{ path: 'shader-course/textures', title: 'Shader Textures' }
-			]
-		}
-	];
+	import { categories } from '$lib';
 </script>
 
 <div class="container mx-auto px-4 py-8">
