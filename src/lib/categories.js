@@ -8,19 +8,23 @@ export const categories = [
     "routes": [
       {
         "path": "coord",
-        "title": "Coordinates"
+        "title": "Coordinates",
+        "thumbnail": "/thumbnails/coord.jpg"
       },
       {
         "path": "orbit-pivot",
-        "title": "Orbit Pivot"
+        "title": "Orbit Pivot",
+        "thumbnail": "/thumbnails/orbit-pivot.jpg"
       },
       {
         "path": "orbit-pivot/offset",
-        "title": "Orbit Pivot Offset"
+        "title": "Orbit Pivot Offset",
+        "thumbnail": "/thumbnails/orbit-pivot-offset.jpg"
       },
       {
         "path": "view-offset",
-        "title": "View Offset"
+        "title": "View Offset",
+        "thumbnail": "/thumbnails/view-offset.jpg"
       }
     ]
   },
@@ -30,27 +34,33 @@ export const categories = [
     "routes": [
       {
         "path": "deoverlap",
-        "title": "Deoverlap"
+        "title": "Deoverlap",
+        "thumbnail": "/thumbnails/deoverlap.jpg"
       },
       {
         "path": "extruded",
-        "title": "Extruded"
+        "title": "Extruded",
+        "thumbnail": "/thumbnails/extruded.jpg"
       },
       {
         "path": "max-inscribed",
-        "title": "Max Inscribed"
+        "title": "Max Inscribed",
+        "thumbnail": "/thumbnails/max-inscribed.jpg"
       },
       {
         "path": "pointcloud",
-        "title": "Point Cloud"
+        "title": "Point Cloud",
+        "thumbnail": "/thumbnails/pointcloud.jpg"
       },
       {
         "path": "spine",
-        "title": "Spine"
+        "title": "Spine",
+        "thumbnail": "/thumbnails/spine.jpg"
       },
       {
         "path": "structural-geology",
-        "title": "Structural Geology"
+        "title": "Structural Geology",
+        "thumbnail": "/thumbnails/structural-geology.jpg"
       }
     ]
   },
@@ -60,23 +70,28 @@ export const categories = [
     "routes": [
       {
         "path": "batched-geometry",
-        "title": "Batched Geometry"
+        "title": "Batched Geometry",
+        "thumbnail": "/thumbnails/batched-geometry.jpg"
       },
       {
         "path": "fps",
-        "title": "FPS"
+        "title": "FPS",
+        "thumbnail": "/thumbnails/fps.jpg"
       },
       {
         "path": "instancedmesh",
-        "title": "Instanced Mesh"
+        "title": "Instanced Mesh",
+        "thumbnail": "/thumbnails/instancedmesh.jpg"
       },
       {
         "path": "scene",
-        "title": "Scene"
+        "title": "Scene",
+        "thumbnail": "/thumbnails/scene.jpg"
       },
       {
         "path": "textures",
-        "title": "Textures"
+        "title": "Textures",
+        "thumbnail": "/thumbnails/textures.jpg"
       }
     ]
   },
@@ -86,15 +101,18 @@ export const categories = [
     "routes": [
       {
         "path": "shader-course/functions",
-        "title": "Shader Functions"
+        "title": "Shader Functions",
+        "thumbnail": "/thumbnails/shader-course-functions.jpg"
       },
       {
         "path": "shader-course/textures",
-        "title": "Shader Textures"
+        "title": "Shader Textures",
+        "thumbnail": "/thumbnails/shader-course-textures.jpg"
       },
       {
         "path": "webgl",
-        "title": "WebGL"
+        "title": "WebGL",
+        "thumbnail": "/thumbnails/webgl.jpg"
       }
     ]
   },
@@ -104,19 +122,23 @@ export const categories = [
     "routes": [
       {
         "path": "blending",
-        "title": "Blending"
+        "title": "Blending",
+        "thumbnail": "/thumbnails/blending.jpg"
       },
       {
         "path": "fan",
-        "title": "Fan"
+        "title": "Fan",
+        "thumbnail": "/thumbnails/fan.jpg"
       },
       {
         "path": "sdf-font",
-        "title": "SDF Font"
+        "title": "SDF Font",
+        "thumbnail": "/thumbnails/sdf-font.jpg"
       },
       {
         "path": "blending/transparency",
-        "title": "Transparency"
+        "title": "Transparency",
+        "thumbnail": "/thumbnails/blending-transparency.jpg"
       }
     ]
   }

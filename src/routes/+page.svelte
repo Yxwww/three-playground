@@ -21,11 +21,16 @@
 			
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 				{#each category.routes as route}
-					<Card href="/{route.path}" padding="xl" class="h-full hover:shadow-lg transition-shadow">
-						<Heading tag="h3" class="mb-2 text-xl">{route.title}</Heading>
-						<div class="flex items-center mt-4 text-primary-600">
-							<span>View demo</span>
-							<ArrowRightOutline class="w-5 h-5 ml-2" />
+					<Card href="/{route.path}" padding="none" class="h-full hover:shadow-lg transition-shadow overflow-hidden">
+						{#if route.thumbnail}
+							<img src={route.thumbnail} alt="{route.title}" class="w-full h-32 object-cover" />
+						{/if}
+						<div class="p-5">
+							<Heading tag="h3" class="mb-2 text-xl">{route.title}</Heading>
+							<div class="flex items-center mt-4 text-primary-600">
+								<span>View demo</span>
+								<ArrowRightOutline class="w-5 h-5 ml-2" />
+							</div>
 						</div>
 					</Card>
 				{/each}
