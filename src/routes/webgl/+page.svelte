@@ -10,9 +10,10 @@
 		m4,
 		degToRad
 	} from '$lib/webgl';
-	import { Tween } from 'svelte/motion';
+	import { Tween, tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { raf } from '$lib/webgl/utils';
+	import { derived } from 'svelte/store';
 	function rand() {
 		return Math.random();
 	}
@@ -29,17 +30,20 @@
 	 */
 	const SCALE_VEC: Vec3 = [1, 1, 1];
 
-	const rotation = new Tween(DEFAULT_ROTATION, {
+	const rotation = tweened(DEFAULT_ROTATION, {
 		easing: cubicOut,
 		duration: 2000
 	});
-	const translation = new Tween(DEFAULT_TRANSLATION, { easing: cubicOut });
-	const scaleVec = new Tween(SCALE_VEC, { easing: cubicOut, duration: 1000 });
-	const cameraState = $derived.by(() => ({
-		rotation: rotation,
-		translation: translation,
-		scaleVec: scaleVec
-	}));
+	const translation = tweened(DEFAULT_TRANSLATION, { easing: cubicOut });
+	const scaleVec = tweened(SCALE_VEC, { easing: cubicOut, duration: 1000 });
+	const cameraState = derived(
+		[rotation, translation, scaleVec],
+		([rotation, translation, scaleVec]) => ({
+			rotation: rotation,
+			translation: translation,
+			scaleVec: scaleVec
+		})
+	);
 	rotation.current;
 
 	function clicked(e) {
