@@ -1,4 +1,5 @@
 <script>
+	import Scene from '../../components/Scene.svelte';
 	import {
 		CatmullRomCurve3,
 		Group,
@@ -11,13 +12,10 @@
 		SphereGeometry,
 		Vector3
 	} from 'three';
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
 
-	var container = $state();
+	let destroyFn;
 
-	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 });
+	function onSceneCreated(scene) {
 		const { destroy, update, create } = createGroupControlontrol();
 
 		create(scene);
@@ -35,11 +33,8 @@
 			update({ ...state, angleSpan: MathUtils.degToRad(state.angleSpan) });
 		});
 
-		scene.animate();
-		return () => {
-			destroy();
-		};
-	});
+		destroyFn = destroy;
+	}
 
 	function createGroupControlontrol() {
 		/**
@@ -124,6 +119,11 @@
 			}
 		};
 	}
+
+	import { onDestroy } from 'svelte';
+	onDestroy(() => {
+		if (destroyFn) destroyFn();
+	});
 </script>
 
 <svelte:head>
@@ -132,7 +132,7 @@
 
 <h1>Fan</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

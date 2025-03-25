@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
+	import Scene from '../../components/Scene.svelte';
 	import {
 		DoubleSide,
 		ExtrudeGeometry,
@@ -12,13 +11,11 @@
 		TextureLoader
 	} from 'three';
 
-	let container: HTMLElement;
 	const textureloader = new TextureLoader();
-	onMount(() => {
-		const scene = createScene(container, { width: 1000, height: 1000 });
+	
+	function onSceneCreated(scene) {
 		scene.camera.target(6.530835742683074, -1.403718767928772, 2.1484541870938918e-17);
 		scene.camera.setPos(-1.3718229301479372, 31.654304538377083, 25.81158269462667);
-		scene.animate();
 
 		// Create a store-like shape for a mall
 		const storeShape = new Shape();
@@ -70,16 +67,16 @@
 			material2.needsUpdate = true;
 		});
 		window.scene = scene;
-	});
+	}
 </script>
 
 <svelte:head>
-	<title>Scene</title>
+	<title>Extruded</title>
 </svelte:head>
 
-<h1>Scene</h1>
+<h1>Extruded</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

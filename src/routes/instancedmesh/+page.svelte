@@ -1,6 +1,6 @@
 <script charset="utf-8">
 	import { run } from 'svelte/legacy';
-
+	import Scene from '../../components/Scene.svelte';
 	import { onMount } from 'svelte';
 	import { get, writable } from 'svelte/store';
 	import {
@@ -8,39 +8,15 @@
 		createInstancedCylinder,
 		createThreeCylinder
 	} from '$lib/setup/instancedMesh';
-	import { createScene } from '$lib/setup/scene';
 	import { getStores } from '$app/stores';
-	var container, cylinderContainer, instancedCylinderContainer = $state(), scene;
+	
 	let instancedCylinderMesh = $state();
-
 	let instances = writable(100000);
-
 	let size = $state(0.01);
+	let currentScene;
 
-	onMount(() => {
-		// three instanced mesh scene
-		// const scene = createScene(container);
-		// const mesh = createThreeInstancedMeshRenderingInstances();
-		// scene.add(mesh);
-		// scene.onRender(() => {
-		// 	var time = performance.now();
-		// 	mesh.rotation.y = time * 0.0005;
-		// 	mesh.material.uniforms['time'].value = time * 0.005;
-		// 	mesh.material.uniforms['sineTime'].value = Math.sin(
-		// 		mesh.material.uniforms['time'].value * 0.05
-		// 	);
-		// });
-		// scene.animate();
-
-		// cylinder minimal
-		// const cylinderScene = createScene(cylinderContainer);
-		// cylinderScene.getCamera().position.fromArray([3, 4, 6]);
-		// const cylinder = createThreeCylinder();
-		// cylinderScene.add(cylinder);
-		// cylinderScene.animate();
-
-		// instanced cylinder
-		scene = createScene(instancedCylinderContainer);
+	function onSceneCreated(scene) {
+		currentScene = scene;
 		scene.camera.setPos(2, 2, 2);
 		instancedCylinderMesh = createInstancedCylinder(get(instances), 1, 0.5);
 		scene.add(instancedCylinderMesh);
@@ -56,39 +32,35 @@
 			instancedCylinderMesh = createInstancedCylinder(v, 0.1, 0.04);
 			scene.add(instancedCylinderMesh);
 		});
-		scene.animate();
-	});
+	}
 
 	run(() => {
 		if (instancedCylinderMesh) {
 			instancedCylinderMesh.material.uniforms.size.value = size;
 		}
 	});
+	
 	onMount(() => {
 		return () => {
-			scene.remove(instancedCylinderMesh);
-			scene.dispose();
+			if (currentScene && instancedCylinderMesh) {
+				currentScene.remove(instancedCylinderMesh);
+				currentScene.dispose();
+			}
 		};
 	});
 </script>
 
 <svelte:head>
-	<title>InstancedMesh!</title>
+	<title>InstancedMesh</title>
 </svelte:head>
 
-<div class="minimals">
-	<!-- <div class="minimal-card">
-		<div bind:this={container} />
-		<h3 class="text-center">Three InstancedMesh</h3>
-	</div> -->
+<h1>InstancedMesh</h1>
 
-	<!-- <div class="minimal-card">
-		<div bind:this={cylinderContainer} />
-		<h3 class="text-center">Three CylinderGeometry</h3>
-	</div> -->
+<div class="minimals">
+	<!-- Commented out original sections -->
 
 	<div class="minimal-card">
-		<div bind:this={instancedCylinderContainer}></div>
+		<Scene {onSceneCreated} />
 		<h3 class="text-center">Instanced Cylinder BufferGeometry</h3>
 		<div>
 			<h2>instances:</h2>

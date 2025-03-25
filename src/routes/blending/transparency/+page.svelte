@@ -1,4 +1,5 @@
 <script>
+	import Scene from '../../../components/Scene.svelte';
 	import {
 		AdditiveBlending,
 		BoxGeometry,
@@ -11,16 +12,8 @@
 		NoBlending,
 		PlaneGeometry
 	} from 'three';
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
 
-	/**
-	 * @type {HTMLDivElement}
-	 */
-	var container = $state();
-	onMount(() => {
-		const scene = createScene(container, { width: 900, height: 700 });
-
+	function onSceneCreated(scene) {
 		scene.camera.controls.position0.setZ(2);
 
 		function createMesh(color, offset, opacity, renderOrder) {
@@ -43,25 +36,21 @@
 
 		async function setup() {
 			scene.add(createMesh('#f5f2f2', -1, 0.9, 1));
-
 			scene.add(createMesh('#f2d1a6', 0, 0.9, 1));
-
 			scene.add(createMesh('#f5f2f2', 1, 0.2, 2));
-
-			scene.animate();
 		}
 
 		setup();
-	});
+	}
 </script>
 
 <svelte:head>
-	<title>Scene</title>
+	<title>Transparency Blending</title>
 </svelte:head>
 
-<h1>Scene</h1>
+<h1>Transparency Blending</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

@@ -1,10 +1,7 @@
 <script lang="ts">
-	import { AxesHelper } from '$lib/setup/axesHelper';
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
+	import Scene from '../../components/Scene.svelte';
 	import {
 		BatchedMesh,
-		ExtrudeGeometry,
 		Matrix4,
 		Mesh,
 		MeshBasicMaterial,
@@ -12,11 +9,9 @@
 		TextureLoader
 	} from 'three';
 	import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
-	let container: HTMLElement;
 	const textureLoader = new TextureLoader();
-	onMount(() => {
-		const scene = createScene(container, { width: 1000, height: 1000 });
-		scene.animate();
+	
+	function onSceneCreated(scene) {
 		const material = new MeshBasicMaterial({ color: 0xffffff });
 		const geometry1 = new PlaneGeometry(1, 1);
 		const geometry2 = new PlaneGeometry(0.5, 2);
@@ -89,7 +84,7 @@
 		uvs.needsUpdate = true;
 
 		scene.add(irregularPlaneMesh);
-	});
+	}
 </script>
 
 <svelte:head>
@@ -98,7 +93,7 @@
 
 <h1>Scene</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

@@ -1,4 +1,5 @@
 <script>
+	import Scene from '../../components/Scene.svelte';
 	import {
 		AdditiveBlending,
 		BoxGeometry,
@@ -8,26 +9,16 @@
 		MeshLambertMaterial,
 		NoBlending,
 		PlaneGeometry,
-
 		RepeatWrapping
-
 	} from 'three';
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
 
-	/**
-	 * @type {HTMLDivElement}
-	 */
-	var container = $state();
-	onMount(() => {
-		const scene = createScene(container, { width: 900, height: 700 });
+	function onSceneCreated(scene) {
 		scene.camera.setPos(0, 0, 5);
 
 		async function setup() {
 			await scene.loadTexture('snoop_dogg.png').then((texture) => {
-
-        texture.repeat.set(2, 2)
-        texture.wrapS = RepeatWrapping
+				texture.repeat.set(2, 2)
+				texture.wrapS = RepeatWrapping
 				const material = new MeshLambertMaterial({
 					map: texture,
 					transparent: true,
@@ -47,7 +38,6 @@
 				console.log('second');
 				scene.render();
 
-
 				const material1 = new MeshLambertMaterial({
 					map: texture,
 					transparent: true,
@@ -57,13 +47,12 @@
 				});
 				const geometry1 = new PlaneGeometry(1.5, 1.5);
 				const mesh1 = new Mesh(geometry1, material1);
-				mesh.renderOrder  = 2
+				mesh.renderOrder = 2
 				mesh.position.setZ(0.5);
 				// mesh.rotateX(Math.PI/4)
 
 				scene.add(mesh1);
 				console.log('first');
-
 			});
 
 			// await scene.loadTexture('tinyrick.png').then((texture) => {
@@ -88,16 +77,16 @@
 		}
 
 		setup();
-	});
+	}
 </script>
 
 <svelte:head>
-	<title>Scene</title>
+	<title>Textures</title>
 </svelte:head>
 
-<h1>Scene</h1>
+<h1>Textures</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

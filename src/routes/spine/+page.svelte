@@ -1,4 +1,5 @@
 <script>
+	import Scene from '../../components/Scene.svelte';
 	import {
 		CatmullRomCurve3,
 		Group,
@@ -10,13 +11,8 @@
 		SphereGeometry,
 		Vector3
 	} from 'three';
-	// import { createScene } from '../../setup/scene.js';
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
 
-	var container = $state();
-	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 });
+	function onSceneCreated(scene) {
 		const objects = [];
 		const material = new MeshBasicMaterial({ color: 0x00ff00 });
 		const curve = new CatmullRomCurve3([
@@ -52,8 +48,7 @@
 
 		// Add the group to the scene
 		scene.add(group);
-		scene.animate();
-	});
+	}
 </script>
 
 <svelte:head>
@@ -62,7 +57,7 @@
 
 <h1>Spine</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

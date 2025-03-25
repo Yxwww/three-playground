@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
+	import Scene from '../../components/Scene.svelte';
 
 	let min = Infinity,
 		max = 0,
@@ -9,14 +8,9 @@
 		felapse = 0,
 		average = 0;
 
-	/**
-	 * @type {HTMLDivElement}
-	 */
-	var container = $state();
-	onMount(() => {
-		const { animate, onRender } = createScene(container, { width: 400, height: 400 });
-		animate();
-	});
+	function onSceneCreated(scene) {
+		// The scene is already set up for animation in the Scene component
+	}
 </script>
 
 <svelte:head>
@@ -31,13 +25,13 @@
 		relies on RAF
 		<ul>
 			<li>
-				Will be faster than actualy framerate since RAF happens before frame is ready to paint/render
+				Will be faster than actual framerate since RAF happens before frame is ready to paint/render
 			</li>
 		</ul>
 	</li>
 </ul>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

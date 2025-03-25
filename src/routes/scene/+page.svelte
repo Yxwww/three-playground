@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
+	import Scene from '../../components/Scene.svelte';
 
-	let container: HTMLElement;
-	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 });
-		scene.animate();
-	});
+	function onSceneCreated(scene) {
+		// Basic empty scene
+	}
 </script>
 
 <svelte:head>
@@ -15,7 +12,7 @@
 
 <h1>Scene</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>

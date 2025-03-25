@@ -1,4 +1,5 @@
 <script>
+	import Scene from '../../components/Scene.svelte';
 	import {
 		AdditiveBlending,
 		BoxGeometry,
@@ -9,15 +10,8 @@
 		NoBlending,
 		PlaneGeometry
 	} from 'three';
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
 
-	/**
-	 * @type {HTMLDivElement}
-	 */
-	var container;
-	onMount(() => {
-		const scene = createScene(container, { width: 900, height: 700 });
+	function onSceneCreated(scene) {
 		scene.camera.setPos(0, 0, 5);
 
 		async function setup() {
@@ -64,16 +58,16 @@
 		}
 
 		setup();
-	});
+	}
 </script>
 
 <svelte:head>
-	<title>Scene</title>
+	<title>Blending</title>
 </svelte:head>
 
-<h1>Scene</h1>
+<h1>Blending</h1>
 <div class="minimal-card">
-	<div bind:this={container} />
+	<Scene {onSceneCreated} />
 </div>
 
 <style>
