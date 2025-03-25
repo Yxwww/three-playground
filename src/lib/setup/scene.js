@@ -106,8 +106,13 @@ export function createScene(
 		felapse = 0,
 		average = 0;
 	let start = performance.now();
+
+	/**
+	 * @type {number | undefined}
+	 */
+	let rafId;
 	function animate() {
-		requestAnimationFrame(() => {
+		rafId = requestAnimationFrame(() => {
 			const now = performance.now();
 			fps = 1000 / (now - start);
 			fCount++;
@@ -243,6 +248,13 @@ export function createScene(
 		},
 		getGui() {
 			return gui;
+		},
+		destory() {
+			gui.destroy();
+			scene.remove();
+			if (rafId != null) {
+				cancelAnimationFrame(rafId);
+			}
 		}
 	};
 
