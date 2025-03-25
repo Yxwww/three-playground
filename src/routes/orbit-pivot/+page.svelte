@@ -1,7 +1,6 @@
-<script>
+<script lang="ts">
 	import { Color, DoubleSide, Matrix4, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
+	import Scene from '../../components/Scene.svelte';
 
 	function createMesh(color, offset, opacity, renderOrder) {
 		const material1 = new MeshLambertMaterial({
@@ -19,12 +18,7 @@
 		return mesh1;
 	}
 
-	/**
-	 * @type {HTMLDivElement}
-	 */
-	var container = $state();
-	onMount(() => {
-		const scene = createScene(container, { width: 300, height: 600 });
+	function onSceneCrated(scene) {
 		scene.camera.setPos(5, 5, 5);
 		scene.camera.threeCamera.setViewOffset(300, 900, 0, 0, 300, 600);
 		scene.camera.threeCamera.updateProjectionMatrix();
@@ -39,29 +33,11 @@
 		}
 
 		setup();
-	});
+	}
 </script>
 
 <svelte:head>
 	<title>Scene</title>
 </svelte:head>
 
-<h1>Scene</h1>
-<div class="minimal-card">
-	<div bind:this={container}></div>
-</div>
-
-<style>
-	.minimals {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-
-	.minimal-card {
-		display: inline-block;
-		border: 1px solid grey;
-		left: 300px;
-		width: 300px;
-	}
-</style>
+<Scene onSceneCreated={onSceneCrated}></Scene>

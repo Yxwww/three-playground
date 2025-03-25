@@ -10,7 +10,7 @@
 	} from 'three';
 	import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 	const textureLoader = new TextureLoader();
-	
+
 	function onSceneCreated(scene) {
 		const material = new MeshBasicMaterial({ color: 0xffffff });
 		const geometry1 = new PlaneGeometry(1, 1);
@@ -56,7 +56,9 @@
 
 		// Update the geometry
 		irregularPlaneGeometry.computeVertexNormals();
-		const gui = new GUI();
+
+		const { getGui } = scene;
+		const gui = getGui();
 		material.wireframe = false;
 		const materialFolder = gui.addFolder('Material');
 		materialFolder.add(material, 'wireframe').name('Wireframe');
