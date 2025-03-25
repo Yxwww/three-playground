@@ -100,11 +100,6 @@ export const categories = [
     "color": "yellow",
     "routes": [
       {
-        "path": "shader-course/functions",
-        "title": "Shader Functions",
-        "thumbnail": "/thumbnails/shader-course-functions.jpg"
-      },
-      {
         "path": "shader-course/textures",
         "title": "Shader Textures",
         "thumbnail": "/thumbnails/shader-course-textures.jpg"
@@ -139,6 +134,27 @@ export const categories = [
         "path": "blending/transparency",
         "title": "Transparency",
         "thumbnail": "/thumbnails/blending-transparency.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Uncategorized",
+    "color": "gray",
+    "routes": [
+      {
+        "path": "shader-course/borders",
+        "title": "Borders",
+        "thumbnail": "/thumbnails/shader-course-borders.jpg"
+      },
+      {
+        "path": "shader-course/smoothstep",
+        "title": "Smoothstep",
+        "thumbnail": "/thumbnails/shader-course-smoothstep.jpg"
+      },
+      {
+        "path": "shader-course/textures-smoothstep",
+        "title": "Textures Smoothstep",
+        "thumbnail": "/thumbnails/shader-course-textures-smoothstep.jpg"
       }
     ]
   }

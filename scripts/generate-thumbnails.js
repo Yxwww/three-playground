@@ -49,7 +49,7 @@ async function generateThumbnails() {
 
 		// For each route, take a screenshot
 		for (const route of routes) {
-			const url = `http://localhost:3004/${route}`;
+			const url = `http://localhost:3003/${route}`;
 			console.log(`Capturing ${url}`);
 
 			// Navigate to the page

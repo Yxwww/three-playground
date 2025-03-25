@@ -15,7 +15,8 @@ const categoryColors = {
   'Geometry': 'green',
   'Camera & Controls': 'red',
   'Visual Effects': 'purple',
-  'Shaders & WebGL': 'yellow'
+  'Shaders & WebGL': 'yellow',
+  'Uncategorized': 'gray'
 };
 
 // Map route paths to categories
@@ -156,8 +157,12 @@ function generateCategories() {
     routes: routes.sort((a, b) => a.title.localeCompare(b.title))
   }));
   
-  // Sort categories by name
-  categoriesArray.sort((a, b) => a.name.localeCompare(b.name));
+  // Sort categories by name, but ensure Uncategorized is always last
+  categoriesArray.sort((a, b) => {
+    if (a.name === 'Uncategorized') return 1;
+    if (b.name === 'Uncategorized') return -1;
+    return a.name.localeCompare(b.name);
+  });
   
   return categoriesArray;
 }
