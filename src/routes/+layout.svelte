@@ -25,4 +25,9 @@
 		padding: 2em;
 		box-sizing: border-box;
 	}
+
+	:global(html.dark) main {
+		background-color: #1f2937; /* bg-gray-800 */
+		color: #f9fafb; /* text-gray-50 */
+	}
 </style>
