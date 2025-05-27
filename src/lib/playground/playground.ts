@@ -22,8 +22,8 @@ const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 1000, pos: [5, 5, 5] };
 /**
  * @param {HTMLElement} container - rendering container
  */
-export function createScene(
-	container,
+export function mountPlayground(
+	container: HTMLElement,
 	{
 		width = 400,
 		height = 400,
@@ -249,7 +249,7 @@ export function createScene(
 		getGui() {
 			return gui;
 		},
-		destory() {
+		destroy() {
 			gui.destroy();
 			scene.remove();
 			if (rafId != null) {

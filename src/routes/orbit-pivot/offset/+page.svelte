@@ -1,6 +1,6 @@
 <script>
 	import { Color, DoubleSide, Matrix4, Mesh, MeshLambertMaterial, PlaneGeometry } from 'three';
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import { onMount } from 'svelte';
 
 	function createMesh(color, offset, opacity, renderOrder) {
@@ -24,7 +24,7 @@
 	 */
 	var container = $state();
 	onMount(() => {
-		const scene = createScene(container, { width: 300, height: 600 });
+		const scene = mountPlayground(container, { width: 300, height: 600 });
 		scene.camera.setPos(10, 0, 0);
 		scene.camera.threeCamera.setViewOffset(300, 900, 0, 0, 300, 600);
 

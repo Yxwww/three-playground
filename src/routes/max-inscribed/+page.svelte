@@ -1,5 +1,5 @@
 <script>
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import polylabel from 'polylabel';
 	import { onMount } from 'svelte';
 	// const maxInscribedCircle = require('max-inscribed-circle/dist/max-inscribed-circle.es5.min.js');
@@ -24,22 +24,9 @@
 		Vector2,
 		Vector3
 	} from 'three';
-	import { radToDeg } from 'three/src/math/MathUtils';
 	const ALDO_LOGO_URL = '/images/tiny-rick-square.png';
 	const loader = new TextureLoader();
 
-	/**
-	 * @typedef {[number, number, number ,number]} Minmax
-	 * @typedef {[number, number]} Vec2
-	 * @typedef {[number, number, number]} Vec3
-	 * @typedef {Array<Vec2>} Coordinates
-	 */
-
-	/**
-	 * @param {Coordinates} polygons - all polygons
-	 * @param {Minmax} minmax
-	 * @return {Mesh}
-	 */
 	function createMaxInscribed(polygons) {
 		const result = polylabel([polygons], 1.0, true);
 		console.log('result', result);
@@ -98,7 +85,7 @@
 	}
 
 	onMount(() => {
-		const scene = createScene(container, { width: 600, height: 600 });
+		const scene = mountPlayground(container, { width: 600, height: 600 });
 		/**
 		 * @type {Coordinates}
 		 */

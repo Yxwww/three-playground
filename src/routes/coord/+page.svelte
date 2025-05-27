@@ -1,6 +1,6 @@
 <script>
 	import { BoxGeometry, DoubleSide, Mesh, MeshBasicMaterial, PlaneGeometry, Vector3 } from 'three';
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 
@@ -17,7 +17,7 @@
 	 */
 	var plot2d = $state();
 	onMount(() => {
-		const scene = createScene(container, {
+		const scene = mountPlayground(container, {
 			axesLength: 100,
 			enableAxesHelper: false,
 			width,

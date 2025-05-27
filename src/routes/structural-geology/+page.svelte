@@ -15,7 +15,7 @@
 		BufferAttribute
 	} from 'three';
 	import { createInstancedCylinder } from '$lib/setup/instancedMesh';
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import { createText } from '$lib/setup/text.js';
 
 	var container = $state();
@@ -34,7 +34,7 @@
 
 	onMount(async () => {
 		const axesLength = 2;
-		const scene = createScene(container, { width: 800, height: 800, axesLength: 0 });
+		const scene = mountPlayground(container, { width: 800, height: 800, axesLength: 0 });
 		mesh = createInstancedCylinder();
 		scene.camera.setPos(-6, 4, -3);
 

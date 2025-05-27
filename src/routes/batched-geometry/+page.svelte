@@ -33,6 +33,7 @@
 			material.map = texture;
 			material.needsUpdate = true;
 		});
+    batchedMesh.position.z += 5;
 		scene.add(batchedMesh);
 
 		// Create a slightly distorted plane
