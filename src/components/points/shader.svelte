@@ -1,5 +1,4 @@
 <script>
-	import { createScene } from '$lib/setup/scene.js';
 	import {
 		Points,
 		BufferGeometry,
@@ -12,11 +11,12 @@
 		DoubleSide
 	} from 'three';
 	import { onMount } from 'svelte';
+	import { mountPlayground } from '$lib/playground';
 
 	/** @type {HTMLDivElement} */
 	var container = $state();
 	onMount(() => {
-		const scene = createScene(container, {
+		const scene = mountPlayground(container, {
 			axesLength: 100,
 			width: 400,
 			height: 400,

@@ -14,9 +14,9 @@
 		LineBasicMaterial,
 		BufferAttribute
 	} from 'three';
-	import { createInstancedCylinder } from '$lib/setup/instancedMesh';
 	import { mountPlayground } from '$lib/playground';
-	import { createText } from '$lib/setup/text.js';
+	import { createText } from '$lib/playground/text';
+	import { createInstancedCylinder } from '$lib/playground/instancedMesh';
 
 	var container = $state();
 	let toggleOn = $state(true);
