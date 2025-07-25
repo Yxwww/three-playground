@@ -14,9 +14,9 @@
 		LineBasicMaterial,
 		BufferAttribute
 	} from 'three';
-	import { createInstancedCylinder } from '$lib/setup/instancedMesh';
-	import { createScene } from '$lib/setup/scene.js';
-	import { createText } from '$lib/setup/text.js';
+	import { mountPlayground } from '$lib/playground';
+	import { createText } from '$lib/playground/text';
+	import { createInstancedCylinder } from '$lib/playground/instancedMesh';
 
 	var container = $state();
 	let toggleOn = $state(true);
@@ -34,7 +34,7 @@
 
 	onMount(async () => {
 		const axesLength = 2;
-		const scene = createScene(container, { width: 800, height: 800, axesLength: 0 });
+		const scene = mountPlayground(container, { width: 800, height: 800, axesLength: 0 });
 		mesh = createInstancedCylinder();
 		scene.camera.setPos(-6, 4, -3);
 

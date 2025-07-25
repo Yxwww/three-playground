@@ -1,5 +1,5 @@
 <script>
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import { Text } from 'troika-three-text';
 	import { onMount } from 'svelte';
 
@@ -8,7 +8,7 @@
 	 */
 	var container = $state();
 	onMount(() => {
-		const scene = createScene(container, { width: 400, height: 400 });
+		const scene = mountPlayground(container, { width: 400, height: 400 });
 		const myText = new Text();
 		scene.add(myText);
 

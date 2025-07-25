@@ -4,6 +4,18 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
+		<script>
+			// Inline script to prevent flash of wrong theme
+			const THEME_STORAGE_KEY = 'playground-theme-preference';
+			const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'system';
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			
+			if (savedTheme === 'dark' || (savedTheme === 'system' && prefersDark)) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover" class="bg-white dark:bg-gray-800">

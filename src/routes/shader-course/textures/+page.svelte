@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import { onMount } from 'svelte';
 	import vertexShader from './vertex.glsl';
 	import fragmentShader from './frag.glsl';
@@ -23,7 +23,7 @@
 	let container: HTMLElement;
 	const textureLoader = new TextureLoader();
 	onMount(() => {
-		const scene = createScene(container, { width: 800, height: 800 });
+		const scene = mountPlayground(container, { width: 800, height: 800 });
 		// scene.getThreeScene().background = new Color(0x000000);
 		scene.animate();
 

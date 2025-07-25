@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import { onMount } from 'svelte';
 
 	let container: HTMLElement;
@@ -10,18 +10,18 @@
 		const width = container.clientWidth;
 		// Height should be full screen height minus 73
 		const height = window.innerHeight - 73;
-		const d = Math.min(width, height);
-		const scene = createScene(container, { width: d, height: d });
-		console.log('di', d);
+		// const d = Math.min(width, height);
+		const scene = mountPlayground(container, { width, height });
 		scene.animate();
 
 		onSceneCreated(scene);
+    console.log('Scene created with dimensions:', scene);
 		return () => {
-			scene.destroy();
+			scene.destory();
 		};
 	});
 </script>
 
-<div class="w-full">
-	<div bind:this={container}></div>
+<div class="w-full h-full">
+	<div bind:this={container} class="w-full h-full"></div>
 </div>

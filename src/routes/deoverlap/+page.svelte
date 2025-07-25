@@ -21,7 +21,7 @@
 		BoxGeometry,
 		Line3
 	} from 'three';
-	import { createScene } from '$lib/setup/scene.js';
+	import { mountPlayground } from '$lib/playground';
 	import { onMount } from 'svelte';
 	import type { Nullable } from 'vitest';
 
@@ -179,7 +179,7 @@
 	}
 
 	onMount(() => {
-		scene = createScene(container, { width: 1200, height: 1200 });
+		scene = mountPlayground(container, { width: 1200, height: 1200 });
 		const threeScene = scene.getThreeScene();
 		const camera = scene.camera.threeCamera;
 		console.log('scene', threeScene);

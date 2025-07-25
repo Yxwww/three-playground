@@ -1,13 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
-	import { createScene } from '$lib/setup/scene';
+	import { mountPlayground } from '$lib/playground';
 
 	/**
 	 * @type {HTMLDivElement}
 	 */
 	var container = $state();
 	onMount(() => {
-		createScene(container, { width: 800, height: 400 }).animate();
+		mountPlayground(container, { width: 800, height: 400 }).animate();
 	});
 </script>
 

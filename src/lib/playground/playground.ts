@@ -1,6 +1,6 @@
 /// <reference path="./types.d.ts" />
 import Stats from 'three/examples/jsm/libs/stats.module.js';
-import GUI from 'three/examples/jsm/libs/lil-gui.module.min';
+import GUI from 'three/examples/jsm/libs/lil-gui.module.min.js';
 
 import {
 	Color,
@@ -22,8 +22,8 @@ const CAMERA_DEFAULT_CONFIG = { near: 0.1, far: 1000, pos: [5, 5, 5] };
 /**
  * @param {HTMLElement} container - rendering container
  */
-export function createScene(
-	container,
+export function mountPlayground(
+	container: HTMLElement,
 	{
 		width = 400,
 		height = 400,
@@ -49,8 +49,7 @@ export function createScene(
 
 	const scene = new ThreeScene();
 
-	/** @type any */
-	let axesHelper;
+	let axesHelper: AxesHelper | undefined;
 	if (enableAxesHelper && axesLength > 0) {
 		axesHelper = new AxesHelper(axesLength);
 		scene.add(axesHelper);
@@ -92,10 +91,7 @@ export function createScene(
 	//   renderer.setSize(window.innerWidth, window.innerHeight)
 	// }
 
-	/**
-	 * @type {any}
-	 */
-	let xPanel;
+	let xPanel: any;
 	var stats = new Stats();
 	xPanel = stats.addPanel(new Stats.Panel('fps', '#ff8', '#221'));
 	stats.showPanel(3);
@@ -107,10 +103,7 @@ export function createScene(
 		average = 0;
 	let start = performance.now();
 
-	/**
-	 * @type {number | undefined}
-	 */
-	let rafId;
+	let rafId: number | undefined;
 	function animate() {
 		rafId = requestAnimationFrame(() => {
 			const now = performance.now();
@@ -150,31 +143,16 @@ export function createScene(
 	const sceneControl = {
 		get camera() {
 			return {
-				/**
-				 * @param {number} x
-				 * @param {number} y
-				 * @param {number} z
-				 */
-				target(x, y, z) {
+				target(x: number, y: number, z: number) {
 					controls.target.set(x, y, z);
 					controls.update();
 				},
-				/**
-				 * @param {number} x
-				 * @param {number} y
-				 * @param {number} z
-				 */
-				lookAt(x, y, z) {
+				lookAt(x: number, y: number, z: number) {
 					// camera.lookAt(x, y, z);
 					controls.target.set(x, y, z);
 					controls.update();
 				},
-				/**
-				 * @param {number} x
-				 * @param {number} y
-				 * @param {number} z
-				 */
-				setPos(x, y, z) {
+				setPos(x: number, y: number, z: number) {
 					camera.position.set(x, y, z);
 					controls.update();
 				},
@@ -192,39 +170,30 @@ export function createScene(
 			return axesHelper;
 		},
 		render,
-		/**
-		 * @param {THREE.Object3D} object
-		 * @returns {void}
-		 **/
-		remove(object) {
+		remove(object: Object3D) {
 			if (object instanceof Mesh) {
 				object.geometry?.dispose();
-				object.material?.dispose();
+				if (Array.isArray(object.material)) {
+					object.material.forEach((mat) => mat?.dispose());
+				} else {
+					object.material?.dispose();
+				}
 			}
 			scene.remove(object);
 		},
-		/**
-		 *@param {() => void} cb
-		 */
-		onRender(cb) {
+		onRender(cb: () => void) {
 			onRender = cb;
 		},
 		animate,
 		onDestroy() {},
 		dispose() {
-			scene.remove();
+			scene.clear();
 			gui.destroy();
 		},
-		/**
-		 * @param {Object3D} threeObject - anything that's a three object
-		 */
-		add(threeObject) {
+		add(threeObject: Object3D) {
 			scene.add(threeObject);
 		},
-		/**
-		 * @param {string} url - url of the texture we are loading
-		 */
-		loadTexture(url) {
+		loadTexture(url: string) {
 			return new Promise((res, rej) => {
 				// load a resource
 				loader.load(
@@ -249,9 +218,9 @@ export function createScene(
 		getGui() {
 			return gui;
 		},
-		destory() {
+		destroy() {
 			gui.destroy();
-			scene.remove();
+			scene.clear();
 			if (rafId != null) {
 				cancelAnimationFrame(rafId);
 			}
