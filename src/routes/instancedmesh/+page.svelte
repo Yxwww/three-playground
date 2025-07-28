@@ -1,4 +1,4 @@
-<script charset="utf-8">
+<script>
 	import { run } from 'svelte/legacy';
 	import Scene from '../../components/Scene.svelte';
 	import { onMount } from 'svelte';
@@ -7,7 +7,7 @@
 		createThreeInstancedMeshRenderingInstances,
 		createInstancedCylinder,
 		createThreeCylinder
-	} from '$lib/setup/instancedMesh';
+	} from '$lib/playground/instancedMesh';
 	import { getStores } from '$app/stores';
 	
 	let instancedCylinderMesh = $state();

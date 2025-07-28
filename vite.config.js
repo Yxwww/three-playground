@@ -7,5 +7,8 @@ export default defineConfig({
 	plugins: [sveltekit(), glsl(), tailwindcss()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
+	ssr: {
+		noExternal: ['flowbite-svelte']
 	}
 });

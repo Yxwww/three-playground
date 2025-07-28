@@ -54,6 +54,7 @@
 	"type": "module",
 	"pnpm": {
 		"onlyBuiltDependencies": [
+			"@sveltejs/kit",
 			"esbuild"
 		]
 	}

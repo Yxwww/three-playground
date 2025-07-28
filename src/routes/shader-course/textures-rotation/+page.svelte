@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { createScene } from '$lib/setup/scene.js';
-	import { onMount } from 'svelte';
+	import Scene from '../../../components/Scene.svelte';
 	import vertexShader from './vertex.glsl';
 	import fragmentShader from './frag.glsl';
 	import {
@@ -20,12 +19,10 @@
 	} from 'three';
 	import { texture } from 'three/tsl';
 
-	let container: HTMLElement;
 	const textureLoader = new TextureLoader();
-	onMount(() => {
-		const scene = createScene(container, { width: 800, height: 800 });
-		// scene.getThreeScene().background = new Color(0x000000);
-		scene.animate();
+	
+	function onSceneCreated(scene) {
+		scene.camera.setPos(0, 0, 5);
 
 		const tint = new Vector4(1, 0, 0);
 		const material = new ShaderMaterial({
@@ -70,7 +67,7 @@
 		// });
 
 		scene.add(mesh);
-	});
+	}
 </script>
 
 <svelte:head>
@@ -79,7 +76,7 @@
 
 <h1>Scene</h1>
 <div class="minimal-card">
-	<div bind:this={container}></div>
+	<Scene {onSceneCreated} />
 </div>
 
 <style>
