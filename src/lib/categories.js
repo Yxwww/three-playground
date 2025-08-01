@@ -147,9 +147,29 @@ export const categories = [
         "thumbnail": "/thumbnails/shader-course-borders.jpg"
       },
       {
+        "path": "integer-attributes",
+        "title": "Integer Attributes",
+        "thumbnail": "/thumbnails/integer-attributes.jpg"
+      },
+      {
+        "path": "renderOrder",
+        "title": "RenderOrder",
+        "thumbnail": "/thumbnails/renderOrder.jpg"
+      },
+      {
         "path": "shader-course/smoothstep",
         "title": "Smoothstep",
         "thumbnail": "/thumbnails/shader-course-smoothstep.jpg"
+      },
+      {
+        "path": "test",
+        "title": "Test",
+        "thumbnail": "/thumbnails/test.jpg"
+      },
+      {
+        "path": "shader-course/textures-rotation",
+        "title": "Textures Rotation",
+        "thumbnail": "/thumbnails/shader-course-textures-rotation.jpg"
       },
       {
         "path": "shader-course/textures-smoothstep",
