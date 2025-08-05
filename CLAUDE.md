@@ -5,26 +5,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ### Development
-- `npm run dev` - Start development server on port 3003
-- `npm run dev -- --open` - Start dev server and open browser
+- `pnpm run dev` - Start development server on port 3003
+- `pnpm run dev -- --open` - Start dev server and open browser
 
 ### Build & Preview
-- `npm run build` - Build production version
-- `npm run preview` - Preview production build
+- `pnpm run build` - Build production version
+- `pnpm run preview` - Preview production build
 
 ### Testing
-- `npm run test` - Run Playwright end-to-end tests
-- `npm run test:unit` - Run Vitest unit tests
+- `pnpm run test` - Run Playwright end-to-end tests
+- `pnpm run test:unit` - Run Vitest unit tests
 
 ### Code Quality
-- `npm run lint` - Check code with Prettier and ESLint
-- `npm run format` - Format code with Prettier
-- `npm run check` - Run svelte-check for type checking
-- `npm run check:watch` - Run svelte-check in watch mode
+- `pnpm run lint` - Check code with Prettier and ESLint
+- `pnpm run format` - Format code with Prettier
+- `pnpm run check` - Run svelte-check for type checking
+- `pnpm run check:watch` - Run svelte-check in watch mode
 
 ### Utility Scripts
-- `npm run generate-categories` - Generate navigation categories (run after adding new routes)
-- `npm run generate-thumbnails` - Generate thumbnails for examples
+- `pnpm run generate-categories` - Generate navigation categories (run after adding new routes)
+- `pnpm run generate-thumbnails` - Generate thumbnails for examples
 
 ## Architecture
 
@@ -59,7 +59,7 @@ Routes are automatically categorized by `scripts/generate-categories.js`. Catego
 
 After adding a new route:
 1. Update the category mapping in `scripts/generate-categories.js` if needed
-2. Run `npm run generate-categories`
+2. Run `pnpm run generate-categories`
 
 ### Shader Support
 GLSL files can be imported directly:
