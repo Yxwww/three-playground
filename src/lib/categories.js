@@ -105,6 +105,11 @@ export const categories = [
         "thumbnail": "/thumbnails/shader-course-textures.jpg"
       },
       {
+        "path": "wasm-hello",
+        "title": "WASM Hello World",
+        "thumbnail": "/thumbnails/wasm-hello.jpg"
+      },
+      {
         "path": "webgl",
         "title": "WebGL",
         "thumbnail": "/thumbnails/webgl.jpg"
@@ -145,6 +150,11 @@ export const categories = [
         "path": "shader-course/borders",
         "title": "Borders",
         "thumbnail": "/thumbnails/shader-course-borders.jpg"
+      },
+      {
+        "path": "camera-focus",
+        "title": "Camera Focus",
+        "thumbnail": "/thumbnails/camera-focus.jpg"
       },
       {
         "path": "integer-attributes",

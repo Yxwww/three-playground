@@ -13,7 +13,9 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"generate-categories": "node scripts/generate-categories.js",
-		"generate-thumbnails": "node scripts/generate-thumbnails.js"
+		"generate-thumbnails": "node scripts/generate-thumbnails.js",
+		"build:wasm": "cd wasm-hello && ./build.sh",
+		"dev:wasm": "cd wasm-hello && ./dev.sh"
 	},
 	"dependencies": {
 		"eslint-config-prettier": "^9.1.0",

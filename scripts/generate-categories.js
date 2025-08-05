@@ -51,7 +51,8 @@ const routeToCategory = {
   // Shaders & WebGL
   'webgl': 'Shaders & WebGL',
   'shader-course/functions': 'Shaders & WebGL',
-  'shader-course/textures': 'Shaders & WebGL'
+  'shader-course/textures': 'Shaders & WebGL',
+  'wasm-hello': 'Shaders & WebGL'
 };
 
 // Title mapping for custom titles 
@@ -70,7 +71,8 @@ const pathToTitle = {
   'instancedmesh': 'Instanced Mesh',
   'batched-geometry': 'Batched Geometry',
   'coord': 'Coordinates',
-  'structural-geology': 'Structural Geology'
+  'structural-geology': 'Structural Geology',
+  'wasm-hello': 'WASM Hello World'
 };
 
 /**

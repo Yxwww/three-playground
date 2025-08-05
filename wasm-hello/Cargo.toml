@@ -1,0 +1,33 @@
+[package]
+name = "wasm-hello"
+version = "0.1.0"
+edition = "2021"
+description = "A simple WebAssembly module demonstrating Rust-to-WASM compilation with console logging and basic arithmetic"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yxwww/three-playground"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = ["console"] }
+
+# Optional: Enable wee_alloc for smaller binary size
+[dependencies.wee_alloc]
+version = "0.4.5"
+optional = true
+
+[features]
+default = ["wee_alloc"]
+
+# Optimize for size and performance in release builds
+[profile.release]
+# Optimize for small code size rather than speed
+opt-level = "s"
+# Enable Link Time Optimization
+lto = true
+# Strip debug symbols
+debug = false
+# Enable panic = abort for smaller binary size
+panic = "abort"
