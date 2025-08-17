@@ -197,17 +197,17 @@ geometry.setAttribute('colorIndex',
 in int colorIndex;
 flat out int vColorIndex;  /* 'flat' prevents interpolation */
 
-void main() {
+void main() {'{'}
   vColorIndex = colorIndex;  /* Exact integer value */
-}
+{'}'}
 
 // GLSL Fragment Shader
 flat in int vColorIndex;  /* Receives discrete integer */
 
-void main() {
+void main() {'{'}
   /* Use integer for palette lookup, bit operations, etc. */
   vec3 color = palette[vColorIndex];
-}</code></pre>
+{'}'}</code></pre>
 		
 		<h3>Supported Integer Types:</h3>
 		<ul>
