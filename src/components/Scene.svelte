@@ -15,13 +15,28 @@
 		scene.animate();
 
 		onSceneCreated(scene);
-    console.log('Scene created with dimensions:', scene);
+		console.log('Scene created with dimensions:', scene);
+
+		const handleResize = () => {
+			const newWidth = container.clientWidth;
+			const newHeight = container.clientHeight;
+
+			scene.renderer.setSize(newWidth, newHeight);
+			scene.camera.threeCamera.aspect = newWidth / newHeight;
+			scene.camera.threeCamera.updateProjectionMatrix();
+			scene.render();
+		};
+
+		const resizeObserver = new ResizeObserver(handleResize);
+		resizeObserver.observe(container);
+
 		return () => {
+			resizeObserver.disconnect();
 			scene.destory();
 		};
 	});
 </script>
 
-<div class="w-full h-full">
-	<div bind:this={container} class="w-full h-full"></div>
+<div class="h-full w-full">
+	<div bind:this={container} class="h-full w-full"></div>
 </div>

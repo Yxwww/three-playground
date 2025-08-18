@@ -160,6 +160,9 @@ export function mountPlayground(
 				controls
 			};
 		},
+		get renderer() {
+			return renderer;
+		},
 		getThreeScene() {
 			return scene;
 		},
