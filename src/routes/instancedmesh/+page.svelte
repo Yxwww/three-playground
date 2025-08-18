@@ -9,7 +9,7 @@
 		createThreeCylinder
 	} from '$lib/playground/instancedMesh';
 	import { getStores } from '$app/stores';
-	
+
 	let instancedCylinderMesh = $state();
 	let instances = writable(100000);
 	let size = $state(0.01);
@@ -39,7 +39,7 @@
 			instancedCylinderMesh.material.uniforms.size.value = size;
 		}
 	});
-	
+
 	onMount(() => {
 		return () => {
 			if (currentScene && instancedCylinderMesh) {

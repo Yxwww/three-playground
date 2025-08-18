@@ -17,7 +17,7 @@
 		scene.camera.controls.position0.setZ(2);
 
 		function createMesh(color, offset, opacity, renderOrder) {
-			console.log('createmesh')
+			console.log('createmesh');
 			const material1 = new MeshLambertMaterial({
 				transparent: true,
 				opacity: opacity,

@@ -43,7 +43,12 @@
 	}
 </script>
 
-<Navbar let:hidden let:toggle rounded class="border-b border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 px-4 py-2.5">
+<Navbar
+	let:hidden
+	let:toggle
+	rounded
+	class="border-b border-gray-200 bg-gray-50 px-4 py-2.5 dark:border-gray-700 dark:bg-gray-800"
+>
 	<NavHamburger on:click={toggle} />
 
 	<NavUl {hidden} class="order-1 w-full md:flex">
@@ -63,12 +68,12 @@
 		{/each}
 	</NavUl>
 
-	<div class="flex items-center ml-auto">
+	<div class="ml-auto flex items-center">
 		<Button pill size="sm" color="alternative" on:click={toggleTheme} class="p-2">
 			{#if getEffectiveTheme($theme) === 'dark'}
-				<SunSolid class="w-4 h-4 text-yellow-400" />
+				<SunSolid class="h-4 w-4 text-yellow-400" />
 			{:else}
-				<MoonSolid class="w-4 h-4 text-blue-500" />
+				<MoonSolid class="h-4 w-4 text-blue-500" />
 			{/if}
 		</Button>
 	</div>

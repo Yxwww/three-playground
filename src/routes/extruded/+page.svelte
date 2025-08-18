@@ -12,7 +12,7 @@
 	} from 'three';
 
 	const textureloader = new TextureLoader();
-	
+
 	function onSceneCreated(scene) {
 		scene.camera.target(6.530835742683074, -1.403718767928772, 2.1484541870938918e-17);
 		scene.camera.setPos(-1.3718229301479372, 31.654304538377083, 25.81158269462667);

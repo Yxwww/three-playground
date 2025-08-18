@@ -5,42 +5,33 @@
 	function onSceneCreated(scene) {
 		// Create multiple objects to focus on
 		const geometry = new THREE.BoxGeometry(1, 1, 1);
-		
+
 		// Create cubes with different colors at different positions
-		const cube1 = new THREE.Mesh(
-			geometry,
-			new THREE.MeshBasicMaterial({ color: 0xff0000 })
-		);
+		const cube1 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 0xff0000 }));
 		cube1.position.set(-3, 0, 0);
 		scene.add(cube1);
 
-		const cube2 = new THREE.Mesh(
-			geometry,
-			new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-		);
+		const cube2 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 0x00ff00 }));
 		cube2.position.set(0, 0, 0);
 		scene.add(cube2);
 
-		const cube3 = new THREE.Mesh(
-			geometry,
-			new THREE.MeshBasicMaterial({ color: 0x0000ff })
-		);
+		const cube3 = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 0x0000ff }));
 		cube3.position.set(3, 0, 0);
 		scene.add(cube3);
 
 		// Camera focus logic
 		const camera = scene.userData.camera;
 		const controls = scene.userData.controls;
-		
+
 		// Focus on different cubes with smooth transitions
 		let currentFocus = 0;
 		const targets = [cube1, cube2, cube3];
-		
+
 		// Click handler to focus on objects
 		scene.userData.renderer.domElement.addEventListener('click', (event) => {
 			currentFocus = (currentFocus + 1) % targets.length;
 			const target = targets[currentFocus];
-			
+
 			// Smoothly move camera to focus on target
 			controls.target.copy(target.position);
 			controls.update();
@@ -72,7 +63,7 @@
 		margin: 1rem 1rem;
 		width: 450px;
 	}
-	
+
 	.instruction {
 		color: #666;
 		font-style: italic;

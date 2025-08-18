@@ -126,7 +126,7 @@
 			const toCam = scene.camera.threeCamera.position.clone().sub(inscribedMesh.position);
 			const projected = toCam.clone();
 			new Plane(new Vector3(0, 0, 1), 0).projectPoint(toCam, projected);
-			console.log('up', inscribedMesh.up)
+			console.log('up', inscribedMesh.up);
 			// vec.setZ(0)
 			// toCam.clampLength(2, 2);
 			// toCam.setZ(0)
@@ -150,18 +150,17 @@
 
 			/**
 			 * @param {Vector3} v1
-			 * @param {Vector3} v2 
+			 * @param {Vector3} v2
 			 * @returns number
 			 */
-			function compute360Angle({x: x1, y: y1}, {x: x2, y: y2}) {
-				const dot = x1*x2 + y1*y2  
-				const det = x1*y2 - y1*x2
-				return Math.atan2(det, dot)
+			function compute360Angle({ x: x1, y: y1 }, { x: x2, y: y2 }) {
+				const dot = x1 * x2 + y1 * y2;
+				const det = x1 * y2 - y1 * x2;
+				return Math.atan2(det, dot);
 			}
 
-
-			const angle =  compute360Angle(cn, cp);
-			console.log('angle', MathUtils.radToDeg(Math.PI - compute360Angle(cn, cp)))//MathUtils.radToDeg(angle));
+			const angle = compute360Angle(cn, cp);
+			console.log('angle', MathUtils.radToDeg(Math.PI - compute360Angle(cn, cp))); //MathUtils.radToDeg(angle));
 
 			inscribedMesh.rotation.z = angle;
 

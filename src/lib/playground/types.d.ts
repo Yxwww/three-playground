@@ -1,1 +1,3 @@
-interface Window { Stats: any; }
+interface Window {
+	Stats: any;
+}

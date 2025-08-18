@@ -17,7 +17,7 @@
 	import { texture } from 'three/tsl';
 
 	const textureLoader = new TextureLoader();
-	
+
 	function onSceneCreated(scene) {
 		const material = new ShaderMaterial({
 			uniforms: {},

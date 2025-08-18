@@ -20,7 +20,7 @@
 	import { texture } from 'three/tsl';
 
 	const textureLoader = new TextureLoader();
-	
+
 	function onSceneCreated(scene) {
 		scene.camera.setPos(0, 0, 5);
 
@@ -34,21 +34,21 @@
 			vertexShader,
 			fragmentShader
 		});
-    const geometry = new PlaneGeometry(2, 2);
+		const geometry = new PlaneGeometry(2, 2);
 
-    const uvs = geometry.attributes.uv.array;
-    const rotationInDegree = 20;
+		const uvs = geometry.attributes.uv.array;
+		const rotationInDegree = 20;
 
-    const theta = 30 * Math.PI / 180;
-    const c = Math.cos(theta);
-    const s = Math.sin(theta);
+		const theta = (30 * Math.PI) / 180;
+		const c = Math.cos(theta);
+		const s = Math.sin(theta);
 
-    for (let i = 0; i < uvs.length; i += 2) {
-      const x = uvs[i] - 0.5;
-      const y = uvs[i + 1] - 0.5;
-      uvs[i] = c * x - s * y + 0.5;
-      uvs[i + 1] = s * x + c * y + 0.5;
-    }
+		for (let i = 0; i < uvs.length; i += 2) {
+			const x = uvs[i] - 0.5;
+			const y = uvs[i + 1] - 0.5;
+			uvs[i] = c * x - s * y + 0.5;
+			uvs[i + 1] = s * x + c * y + 0.5;
+		}
 
 		const mesh = new Mesh(geometry, material);
 		textureLoader.load('/images/tiny-rick-square.png', (texture) => {

@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.0] - 2025-01-05
 
 ### Added
-- **3D A* Pathfinding Algorithm**: Implemented full 3D pathfinding using the `pathfinding` crate
+
+- **3D A\* Pathfinding Algorithm**: Implemented full 3D pathfinding using the `pathfinding` crate
   - `Point3D` structure with Manhattan distance heuristic
   - `PathfindingGrid` with obstacle support and bounds checking
   - 6-directional movement support (±x, ±y, ±z)
@@ -33,13 +34,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Returns flattened coordinate array for JavaScript consumption
 
 ### Changed
+
 - **Example Focus**: Transformed from basic "Hello World" to advanced pathfinding demonstration
 - **Page Title**: Updated from "WebAssembly Hello World" to "WebAssembly 3D Pathfinding"
 - **User Interface**: Enhanced with interactive instructions and real-time feedback
-- **Dependencies**: Added `pathfinding = "4.0"` crate for A* algorithm implementation
+- **Dependencies**: Added `pathfinding = "4.0"` crate for A\* algorithm implementation
 
 ### Technical Details
-- **Algorithm**: A* pathfinding with Manhattan distance heuristic
+
+- **Algorithm**: A\* pathfinding with Manhattan distance heuristic
 - **Grid Bounds**: (-10, -10, -10) to (10, 10, 10) coordinate space
 - **Obstacles**: Fixed at positions (1,0,0), (2,1,0), (0,1,1), (-1,0,1)
 - **Path Visualization**: TubeGeometry with CatmullRomCurve3 for smooth curves
@@ -47,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Performance**: Optimized WASM binary with `wee_alloc` and size optimization
 
 ### Development
+
 - **Build Process**: Enhanced build script with proper error handling
 - **Testing**: `cargo test` integration with comprehensive test suite
 - **Code Structure**: Modular design with separate pathfinding logic and WASM exports
@@ -54,8 +58,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2024-12-XX
 
 ### Added
+
 - **Basic WebAssembly Module**: Simple Rust-to-WASM compilation example
-- **Hello World Functions**: 
+- **Hello World Functions**:
   - `greet()`: Console logging demonstration
   - `add(a, b)`: Basic arithmetic function
 - **Build Infrastructure**:
@@ -66,6 +71,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Development Workflow**: Complete Rust-to-WASM-to-JavaScript pipeline
 
 ### Initial Implementation
+
 - Cargo.toml with WebAssembly target configuration
 - Basic wasm-bindgen integration
 - Simple console logging via web-sys

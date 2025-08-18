@@ -17,8 +17,8 @@
 
 		async function setup() {
 			await scene.loadTexture('snoop_dogg.png').then((texture) => {
-				texture.repeat.set(2, 2)
-				texture.wrapS = RepeatWrapping
+				texture.repeat.set(2, 2);
+				texture.wrapS = RepeatWrapping;
 				const material = new MeshLambertMaterial({
 					map: texture,
 					transparent: true,
@@ -30,7 +30,7 @@
 				});
 				const geometry = new PlaneGeometry(1.5, 1.5);
 				const mesh = new Mesh(geometry, material);
-				mesh.renderOrder = 1
+				mesh.renderOrder = 1;
 				mesh.position.setX(1);
 				// mesh.rotateX(-Math.PI/4)
 
@@ -47,7 +47,7 @@
 				});
 				const geometry1 = new PlaneGeometry(1.5, 1.5);
 				const mesh1 = new Mesh(geometry1, material1);
-				mesh.renderOrder = 2
+				mesh.renderOrder = 2;
 				mesh.position.setZ(0.5);
 				// mesh.rotateX(Math.PI/4)
 

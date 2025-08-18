@@ -67,7 +67,10 @@
 <div class="minimal-card">
 	<div class="plot-container" bind:this={container}></div>
 	<div class="plot2d" bind:this={plot2d}>
-		<div class="plane-center-2d" style={` top: ${$target[1] - 5}px; left: ${$target[0] - 5}px;`}></div>
+		<div
+			class="plane-center-2d"
+			style={` top: ${$target[1] - 5}px; left: ${$target[0] - 5}px;`}
+		></div>
 	</div>
 </div>
 

@@ -358,22 +358,16 @@ var OrbitControls = function (object, domElement) {
 			} else if (scope.object.isOrthographicCamera) {
 				// orthographic
 				panLeft(
-					(deltaX * (scope.object.right - scope.object.left)) /
-						scope.object.zoom /
-						element.clientWidth,
+					(deltaX * (scope.object.right - scope.object.left)) / scope.object.zoom / element.clientWidth,
 					scope.object.matrix
 				);
 				panUp(
-					(deltaY * (scope.object.top - scope.object.bottom)) /
-						scope.object.zoom /
-						element.clientHeight,
+					(deltaY * (scope.object.top - scope.object.bottom)) / scope.object.zoom / element.clientHeight,
 					scope.object.matrix
 				);
 			} else {
 				// camera neither orthographic nor perspective
-				console.warn(
-					'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.'
-				);
+				console.warn('WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.');
 				scope.enablePan = false;
 			}
 		};

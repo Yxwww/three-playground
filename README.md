@@ -4,7 +4,7 @@ A collection of Three.js experiments and examples built with Svelte.
 
 ## Categories
 
-The navigation and homepage grouping is based on a categories system that is auto-generated during build time. 
+The navigation and homepage grouping is based on a categories system that is auto-generated during build time.
 
 ### How it works
 

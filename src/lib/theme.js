@@ -62,4 +62,3 @@ export function initTheme() {
 	theme.set(savedTheme);
 	applyTheme(savedTheme);
 }
-

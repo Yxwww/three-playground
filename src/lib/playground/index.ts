@@ -1,1 +1,1 @@
-export {mountPlayground} from './playground'
+export { mountPlayground } from './playground';

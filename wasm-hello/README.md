@@ -15,10 +15,11 @@ Make sure you have the following tools installed:
 
 1. **Rust**: Install from [rustup.rs](https://rustup.rs/)
 2. **wasm-pack**: Install using one of these methods:
+
    ```bash
    # Via cargo
    cargo install wasm-pack
-   
+
    # Via installer script
    curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
    ```
@@ -36,6 +37,7 @@ wasm-pack build --target web --out-dir pkg --out-name hello
 ```
 
 The build script will:
+
 1. Compile Rust to WASM using `wasm-pack`
 2. Generate JavaScript bindings
 3. Copy output files to `../src/lib/wasm/`
@@ -67,12 +69,15 @@ console.log('5 + 3 =', result);
 ## Module Functions
 
 ### `greet()`
+
 Prints a "Hello World" message to the browser console.
 
 ### `add(a: number, b: number): number`
+
 Adds two integers and returns the result while logging the operation.
 
 ### `main()`
+
 Called automatically when the module is initialized. Logs a startup message.
 
 ## Architecture
@@ -106,16 +111,19 @@ The build is configured for minimal size:
 ## Troubleshooting
 
 ### Build Fails
+
 - Ensure `wasm-pack` is installed and in PATH
 - Check that you're running the build script from the `wasm-hello` directory
 - Verify Rust toolchain includes `wasm32-unknown-unknown` target
 
 ### Module Fails to Load
+
 - Check browser console for CORS errors
 - Ensure development server is serving WASM files with correct MIME type
 - Verify the output files exist in `src/lib/wasm/`
 
 ### Functions Not Available
+
 - Ensure functions are marked with `#[wasm_bindgen]`
 - Check that the build completed successfully
 - Verify the JavaScript import path is correct
