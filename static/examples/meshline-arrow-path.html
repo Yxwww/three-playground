@@ -48,6 +48,30 @@
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
+			// Custom material with conditional blending: white arrows without tinting, blue background
+			class CustomBlendMeshLineMaterial extends MeshLineMaterial {
+				constructor(parameters) {
+					super(parameters);
+
+					// Modify fragment shader to use conditional blending instead of multiplication
+					// Original: diffuseColor *= texture2D(map, vUV * repeat);
+					// New: Use texture RGB where alpha > 0, else keep material color
+					this.fragmentShader = this.fragmentShader.replace(
+						'if (useMap == 1.) diffuseColor *= texture2D(map, vUV * repeat);',
+						`if (useMap == 1.) {
+							vec4 texColor = texture2D(map, vUV * repeat);
+							// Conditional blend: if texture has alpha, use texture RGB; else keep material color
+							float hasTexture = step(0.01, texColor.a);
+							diffuseColor.rgb = mix(diffuseColor.rgb, texColor.rgb, hasTexture);
+							// Keep alpha opaque for blue background, only use texture alpha where texture exists
+							diffuseColor.a = mix(diffuseColor.a, diffuseColor.a * texColor.a, hasTexture);
+						}`
+					);
+
+					this.needsUpdate = true;
+				}
+			}
+
 			// Scene setup
 			const scene = new THREE.Scene();
 			scene.background = new THREE.Color(0x1a1a2e);
@@ -100,11 +124,11 @@
 				canvas.height = 128;
 				const ctx = canvas.getContext('2d');
 
-				// Clear canvas with transparency
+				// Clear canvas to transparent (material color will show through)
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-				// Draw arrow
-				ctx.fillStyle = '#00d9ff';
+				// Draw arrow in pure white (won't be tinted by material color)
+				ctx.fillStyle = '#ffffff';
 				ctx.strokeStyle = '#ffffff';
 				ctx.lineWidth = 3;
 
@@ -131,7 +155,6 @@
 
 				return texture;
 			}
-
 
 			// Create curved path with elevator segment
 			// First segment: ground level approach to elevator
@@ -187,12 +210,12 @@
 
 			// Create material with arrow texture and background color
 			const arrowTexture = createArrowTexture();
-			const lineMaterial = new MeshLineMaterial({
+			const lineMaterial = new CustomBlendMeshLineMaterial({
 				map: arrowTexture,
 				useMap: 1, // Enable texture
 				repeat: new THREE.Vector2(10, 1), // Repeat texture ~10 times along path (approx every 5 meters)
 				lineWidth: 0.5, // Line width in world units
-				color: new THREE.Color(0x4a90e2), // Blue background color visible through transparent areas
+				color: new THREE.Color(0x4a90e2), // Blue background color (shows where texture is transparent)
 				transparent: true,
 				resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
 				depthTest: true
